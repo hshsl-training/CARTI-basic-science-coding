@@ -1,6 +1,6 @@
 ---
-title: "Class Title Here"
-author: "Amy Yarnell, Author2, Author3"
+title: "CARTI Basic Science Intro to Coding"
+author: "Amy Yarnell, JP Courneya"
 title-block-banner: white
 title-block-banner-color: black
 navbar:

@@ -2,16 +2,14 @@ project:
   type: website
   render:
   - "index.qmd"
-  - "*.Rmd"
-  - "*.md"
+  - "*.qmd"
   
-
 website:
-  title: "CDABS Class Title Here"
+  title: ""
   page-footer:
     right: |
       [![](https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by.svg){fig-alt="CC BY" width=125px}](https://creativecommons.org/licenses/by-sa/4.0/)
-  # repo-url: "add URL here"
+  repo-url: "https://github.com/hshsl-training/CARTI-basic-science-coding.git"
   repo-actions: [edit, issue]
   navbar:
     background: "#c5251d"
@@ -22,6 +20,12 @@ website:
     left:
       - text: "Home"
         file: index.qmd
+      - text: Shell Intro
+        file: 01-Shell_programming.qmd
+      - text: Data Wrangling
+        file: 01-DataWrangling.qmd
+      - text: Data Visualization
+        file: 02-DataVisualization.qmd
      # - sidebar:sidebar id - repeat as needed for sidebar entries
     
 
@@ -38,7 +42,7 @@ website:
 format:
   html:
     theme: 
-    - yeti
-    - custom.scss
+      - yeti
+      - custom.scss
     editor: source
     toc: true
