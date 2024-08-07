@@ -10,7 +10,7 @@ format:
     embed-resources: true
 toc: true
 editor: source
-css: styles.scss
+css: styles.css
 ---
 
 ## Course Description: 
