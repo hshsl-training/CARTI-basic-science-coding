@@ -1,5 +1,6 @@
 ---
-title: "CARTI Basic Science Intro to Coding"
+title: "Intro to Coding"
+subtitle: CARTI Basic Science Research Training Track 
 author: "Amy Yarnell, JP Courneya"
 title-block-banner: white
 title-block-banner-color: black
@@ -15,14 +16,42 @@ css: styles.css
 
 ## Course Description: 
 
+This course is designed to give participants an introduction to key skills they will need to begin confidently working in a research computing environment. Participants will learn fundamentals of programmatic thinking and making their research reproducible.
 
+### Session 1: Introduction to the Command Line
+Topics include:
 
-**Schedule**
+- What is the Unix Shell?
+- Basic and commonly used Unix commands
+- Understanding and navigating the filesystem
+- Working with files
+- Control flow
+- Automating repetitive tasks
 
-| Date | Topic                     |
-|------|---------------------------|
-| TBD  | TBD |
-| TBD  | TBD  |
+### Session 2: Wrangling Data with R and RStudio
+Topics include: 
+
+- Overview of the R programming language and RStudio IDE
+- Installing packages
+- Overview of tidy data and the tidyverse collection of packages
+- Workflow for exploring and cleaning data
+- Importing data
+- Basic row and column operations (subsetting, creating new variables, summarizing)
+
+### Session 3: Visualizing Data with R and RStudio
+Topics Include: 
+
+- Principles and best practices of data visualization
+- Storytelling and communication with data visualization
+- Creating and customizing plots with the `ggplot2` package.
+
+## Schedule
+
+| Date           | Time                   | Topic                              |
+|----------------|------------------------|------------------------------------|
+| Sept. 17, 2024 | 11 a.m - 12:30 p.m.   | Introduction to the Command Line   |
+| Sept. 18, 2024 | 10:45 a.m - 12:15 p.m.| Wrangling Data with R and RStudio  |
+| Sept. 18, 2024 | 1:30 p.m - 3 p.m.     | Visualizing Data with R and RStudio|
 
 
 ## Acknowledgements

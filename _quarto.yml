@@ -20,11 +20,11 @@ website:
     left:
       - text: "Home"
         file: index.qmd
-      - text: Shell Intro
+      - text: 01 Intro to the Command Line
         file: 01-Shell_programming.qmd
-      - text: Data Wrangling
+      - text: 02 Data Wrangling with R
         file: 01-DataWrangling.qmd
-      - text: Data Visualization
+      - text: 03 Data Visualization with R
         file: 02-DataVisualization.qmd
      # - sidebar:sidebar id - repeat as needed for sidebar entries
     
