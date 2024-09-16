@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -79,7 +79,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -88,8 +94,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -100,9 +108,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a href="https://www2.hshsl.umaryland.edu/cdabs/" class="navbar-brand navbar-brand-logo">
     <img src="https://www2.hshsl.umaryland.edu/hshsl/bin/img/logo_white@2x.png" alt="HSHSL logo" class="navbar-logo">
     </a>
@@ -114,25 +122,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./01-Shell_programming.html" rel="" target="" aria-current="page">
- <span class="menu-text">Shell Intro</span></a>
+    <a class="nav-link active" href="./01-Shell_programming.html" aria-current="page"> 
+<span class="menu-text">01 Intro to the Command Line</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./01-DataWrangling.html" rel="" target="">
- <span class="menu-text">Data Wrangling</span></a>
+    <a class="nav-link" href="./01-DataWrangling.html"> 
+<span class="menu-text">02 Data Wrangling with R</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./02-DataVisualization.html" rel="" target="">
- <span class="menu-text">Data Visualization</span></a>
+    <a class="nav-link" href="./02-DataVisualization.html"> 
+<span class="menu-text">03 Data Visualization with R</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -146,7 +154,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#what-is-a-shell" id="toc-what-is-a-shell" class="nav-link active" data-scroll-target="#what-is-a-shell">What is a shell?</a></li>
-  <li><a href="#why-should-i-learn-shell" id="toc-why-should-i-learn-shell" class="nav-link" data-scroll-target="#why-should-i-learn-shell">Why should I learn Shell?</a></li>
+  <li><a href="#why-should-i-learn-the-unix-shell" id="toc-why-should-i-learn-the-unix-shell" class="nav-link" data-scroll-target="#why-should-i-learn-the-unix-shell">Why should I learn the Unix Shell?</a></li>
   <li><a href="#the-git-bash-window" id="toc-the-git-bash-window" class="nav-link" data-scroll-target="#the-git-bash-window">The <em>Git Bash</em> Window</a></li>
   <li><a href="#navigating-your-file-system" id="toc-navigating-your-file-system" class="nav-link" data-scroll-target="#navigating-your-file-system">Navigating your file system</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
@@ -188,7 +196,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#documenting-your-activity-on-the-project" id="toc-documenting-your-activity-on-the-project" class="nav-link" data-scroll-target="#documenting-your-activity-on-the-project">Documenting your activity on the project</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/hshsl-training/CARTI-basic-science-coding.git/edit/main/01-Shell_programming.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/hshsl-training/CARTI-basic-science-coding.git/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/hshsl-training/CARTI-basic-science-coding.git/edit/main/01-Shell_programming.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/hshsl-training/CARTI-basic-science-coding.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -208,7 +216,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -229,7 +239,7 @@ Objectives
 <p><strong>Questions to be answered in this lesson</strong></p>
 <ul>
 <li>What is a command shell and why would I use one?</li>
-<li>How can I move around on my computer?</li>
+<li>How can I move around on my computers file system?</li>
 <li>How can I see what files and directories I have?</li>
 <li>How can I specify the location of a file or directory on my computer?</li>
 </ul>
@@ -237,20 +247,19 @@ Objectives
 </div>
 <section id="what-is-a-shell" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-a-shell">What is a shell?</h2>
-<p>A <em>shell</em> is a computer program that presents a command line interface which allows you to control your computer using commands entered with a keyboard instead of controlling graphical user interfaces (GUIs) with a mouse/keyboard/touchscreen combination.</p>
-<p>There are different types of <em>shell</em> such as <em>Windows Powershell</em>, <em>Windows Command Shell</em>, <em>Bash</em> and <em>zsh</em> for Mac computers.</p>
-<p>For this workshop we will be using <em>Git Bash</em>, which is a command-line shell that enables <em>Git</em> commands and provides some unix based shell utilities but not all of them. The commands that we will be exploring can be also used in a <em>zsh</em> (Mac Terminal) or <em>PowerShell</em> (Windows Shell) with very little or no modifications.</p>
-<p>It is important to consider that <em>Git Bash</em> may not be compatible with other command line programs, and it is recommended to use <a href="https://learn.microsoft.com/en-us/windows/wsl/install">Windows Linux Subsystem</a>, a Linux Distribution if you plan on working with a Linux enviroment in a Windows machine.</p>
+<p>A <em>shell</em> is a program that provides a command-line interface (CLI), allowing you to control your computer by typing commands instead of using graphical user interfaces (GUIs) with a mouse or touchscreen. Think of it as conversing directly with your computer in its native language, granting you more power and flexibility—no point-and-click needed!</p>
+<p>There are various types of shells, each with its own flair. On macOS and Linux systems, you’ll often encounter <em>Bash</em> (Bourne Again Shell) and <em>Zsh</em> (Z Shell). For Windows users, there’s the <em>Command Prompt</em> and <em>PowerShell</em>, which is like Command Prompt’s more sophisticated sibling. Mastering the shell can help you work more efficiently, automate tasks, and unlock your computer’s full potential!</p>
+<p>For this workshop, we will be using <em>Bash</em> in a Ubuntu virtual machine specifically set up for this class. The commands we explore will also work in <em>zsh</em> (available in the Mac Terminal) with minimal adjustments. While <em>PowerShell</em> (the Windows shell) has a different syntax, many of the fundamental commands and concepts are similar and can be adapted with little or no modification.</p>
 </section>
-<section id="why-should-i-learn-shell" class="level2">
-<h2 class="anchored" data-anchor-id="why-should-i-learn-shell">Why should I learn Shell?</h2>
+<section id="why-should-i-learn-the-unix-shell" class="level2">
+<h2 class="anchored" data-anchor-id="why-should-i-learn-the-unix-shell">Why should I learn the Unix Shell?</h2>
 <p>There are many reasons that may benefit you from learning about about the shell:</p>
 <ul>
 <li><p><em>Automate repetitive tasks.</em> If you often need to repeat tasks with a large number of files, with the shell, you can automate those.</p></li>
 <li><p><em>Make your work less error-prone.</em> The shell makes your work less error-prone. When humans do the same thing a hundred different times (or even ten times), they’re likely to make a mistake. Your computer can do the same thing a thousand times with no mistakes.</p></li>
-<li><p><em>Make your work reproductible.</em> By using the command-line, the your computer keeps a record of every step that you’ve carried out, which you can use to re-do your work when you need to. It also gives you a way to communicate unambiguously what you’ve done, so that others can inspect or apply your process to new data.</p></li>
+<li><p><em>Make your work reproductible.</em> When using the command-line your computer keeps a record of every command that you’ve run, which you can use to re-do your work when you need to. It also gives you a way to communicate unambiguously what you’ve done, so that others can inspect or apply your process to new data.</p></li>
 <li><p><em>Save on computing capacity.</em> Sometimes, when we work with data some tasks may require large amounts of computing power and can’t realistically be run on your own machine. These tasks are best performed using remote computers or cloud computing, which can only be accessed through a shell.</p></li>
-<li><p><em>Get advantage of the command line tools.</em> Many bioinformatics tools can only be used through a command line interface. Many more have features and parameter options which are not available in the GUI. BLAST is an example. Many of the advanced functions are only accessible to users who know how to use a shell.</p></li>
+<li><p><em>Get advantage of the command line tools.</em> Many bioinformatics tools can only be used through the CLI. Many offer features and parameter options which are not available in the GUI. BLAST is an example. Many of the advanced functions are only accessible to users who know how to use a shell.</p></li>
 </ul>
 </section>
 <section id="the-git-bash-window" class="level2">
@@ -737,7 +746,7 @@ Solution
 <p>Enter the following command:</p>
 <div class="sourceCode" id="cb67"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> less SRR097977.fastq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Some navigation commands in <code>less</code>:</p>
-<table class="table">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th>key</th>
@@ -873,7 +882,7 @@ Questions
 <section id="details-on-the-fastq-format" class="level2">
 <h2 class="anchored" data-anchor-id="details-on-the-fastq-format">Details on the FASTQ format</h2>
 <p>Although it looks complicated (and it is), it’s easy to understand the <a href="https://en.wikipedia.org/wiki/FASTQ_format">fastq</a> format with a little decoding. Some rules about the format include…</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 4%">
 <col style="width: 95%">
@@ -1879,7 +1888,7 @@ Navigating in Nano
 <div id="callout-51" class="callout-51-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Although <code>nano</code> is useful, it can be frustrating to edit documents, as you can’t use your mouse to navigate to the part of the document you would like to edit. Here are some useful keyboard shortcuts for moving around within a text document in <code>nano</code>. You can find more information by typing <kbd>Ctrl</kbd>+<kbd>G</kbd> within <code>nano</code>.</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 10%">
 <col style="width: 89%">
@@ -2043,10 +2052,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/hshsl-training\.github\.io\/CARTI-basic-science-coding\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -2056,8 +2082,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -2069,7 +2104,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -2113,6 +2271,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -2138,6 +2297,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -2205,10 +2390,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
-    <div class="nav-footer-right"><a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by.svg" class="img-fluid" alt="CC BY" width="125"></a></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/hshsl-training/CARTI-basic-science-coding.git/edit/main/01-Shell_programming.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/hshsl-training/CARTI-basic-science-coding.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by.svg" class="img-fluid" alt="CC BY" width="125"></a></p>
+</div>
   </div>
 </footer>
+
 
 
 
