@@ -15,23 +15,21 @@ code-copy: true
 **Questions to be answered in this lesson**
 
 - What is a command shell and why would I use one?
-- How can I move around on my computer?
+- How can I move around on my computers file system?
 - How can I see what files and directories I have?
 - How can I specify the location of a file or directory on my computer?
 :::
 
 ## What is a shell?
 
-A *shell* is a computer program that presents a command line interface which allows you to control your computer using commands entered with a keyboard instead of controlling graphical user interfaces (GUIs) with a mouse/keyboard/touchscreen combination.
+A *shell* is a program that provides a command-line interface (CLI), allowing you to control your computer by typing commands instead of using graphical user interfaces (GUIs) with a mouse or touchscreen. Think of it as conversing directly with your computer in its native language, granting you more power and flexibility—no point-and-click needed!
 
-There are different types of *shell* such as *Windows Powershell*, *Windows Command Shell*, *Bash* and *zsh* for Mac computers. 
+There are various types of shells, each with its own flair. On macOS and Linux systems, you’ll often encounter *Bash* (Bourne Again Shell) and *Zsh* (Z Shell). For Windows users, there’s the *Command Prompt* and *PowerShell*, which is like Command Prompt’s more sophisticated sibling. Mastering the shell can help you work more efficiently, automate tasks, and unlock your computer’s full potential! 
 
-For this workshop we will be using *Git Bash*, which is a command-line shell that enables *Git* commands and provides some unix based shell utilities but not all of them. The commands that we will be exploring can be also used in a *zsh* (Mac Terminal) or *PowerShell* (Windows Shell) with very little or no modifications.
-
-It is important to consider that *Git Bash* may not be compatible with other command line programs, and it is recommended to use [Windows Linux Subsystem](https://learn.microsoft.com/en-us/windows/wsl/install), a Linux Distribution if you plan on working with a Linux enviroment in a Windows machine. 
+For this workshop, we will be using *Bash* in a Ubuntu virtual machine specifically set up for this class. The commands we explore will also work in *zsh* (available in the Mac Terminal) with minimal adjustments. While *PowerShell* (the Windows shell) has a different syntax, many of the fundamental commands and concepts are similar and can be adapted with little or no modification.
 
 
-##  Why should I learn Shell?
+##  Why should I learn the Unix Shell?
 
 There are many reasons that may benefit you from learning about about the shell:
 
@@ -39,11 +37,11 @@ There are many reasons that may benefit you from learning about about the shell:
   
 - *Make your work less error-prone.* The shell makes your work less error-prone. When humans do the same thing a hundred different times (or even ten times), they're likely to make a mistake. Your computer can do the same thing a thousand times with no mistakes.
 
-- *Make your work reproductible.* By using the command-line, the your computer keeps a record of every step that you've carried out, which you can use to re-do your work when you need to. It also gives you a way to communicate unambiguously what you've done, so that others can inspect or apply your process to new data.
+- *Make your work reproductible.* When using the command-line your computer keeps a record of every command that you've run, which you can use to re-do your work when you need to. It also gives you a way to communicate unambiguously what you've done, so that others can inspect or apply your process to new data.
 
 - *Save on computing capacity.* Sometimes, when we work with data some tasks may require large amounts of computing power and can't realistically be run on your own machine. These tasks are best performed using remote computers or cloud computing, which can only be accessed through a shell.
 
-- *Get advantage of the command line tools.* Many bioinformatics tools can only be used through a command line interface. Many more have features and parameter options which are not available in the GUI. BLAST is an example. Many of the advanced functions are only accessible to users who know how to use a shell.
+- *Get advantage of the command line tools.* Many bioinformatics tools can only be used through the CLI. Many offer features and parameter options which are not available in the GUI. BLAST is an example. Many of the advanced functions are only accessible to users who know how to use a shell.
 
 
 ## The *Git Bash* Window
