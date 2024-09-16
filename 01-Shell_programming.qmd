@@ -29,7 +29,7 @@ There are various types of shells, each with its own flair. On macOS and Linux s
 For this workshop, we will be using *Bash* in a Ubuntu virtual machine specifically set up for this class. The commands we explore will also work in *zsh* (available in the Mac Terminal) with minimal adjustments. While *PowerShell* (the Windows shell) has a different syntax, many of the fundamental commands and concepts are similar and can be adapted with little or no modification.
 
 
-##  Why should I learn the Unix Shell?
+##  Why should I learn the Shell?
 
 There are many reasons that may benefit you from learning about about the shell:
 
@@ -41,12 +41,12 @@ There are many reasons that may benefit you from learning about about the shell:
 
 - *Save on computing capacity.* Sometimes, when we work with data some tasks may require large amounts of computing power and can't realistically be run on your own machine. These tasks are best performed using remote computers or cloud computing, which can only be accessed through a shell.
 
-- *Get advantage of the command line tools.* Many bioinformatics tools can only be used through the CLI. Many offer features and parameter options which are not available in the GUI. BLAST is an example. Many of the advanced functions are only accessible to users who know how to use a shell.
+- *Get advantage of the command line tools.* Many bioinformatics tools can only be used through the shell. Many offer features and parameter options which are not available in the GUI. BLAST is an example. Many of the advanced functions are only accessible to users who know how to use a shell.
 
 
-## The *Git Bash* Window
+## The *Shell* Window
 
-As you open your *Git Bash* Window, you may see something like the following:
+As you open your *Terminal* Window, you may see something like the following:
 
 ```bash
 ComputerUserName-####ABC MINGW64 ~
@@ -60,13 +60,11 @@ This symbol may be different if you are using a Linux or Mac computer.
 
 ## Navigating your file system
 
-The part of the operating system that manages files and directories is called the **file system**. It organizes our data into files, which hold information, and directories (also called "folders"), which hold files or other directories.
+The **file system** manages files and directories in an operating system, organizing data into files (which store information) and directories or folders (which contain files or other directories).
 
-Several commands are frequently used to create, inspect, rename, and delete files and directories.
+Common commands allow you to create, inspect, rename, and delete files and directories. To determine your location, use the `pwd` ("print working directory") command.
 
-Let's find out where we are by running a command called `pwd` (which stands for "print working directory").
-
-At any moment, our **current working directory** is our current default directory, i.e., the directory that the computer assumes we want to run commands in, unless we explicitly specify something else.
+Your **current working directory** is the default location where commands are executed unless you specify a different directory.
 
 Command:
 ```bash
@@ -118,10 +116,10 @@ Anything with a "/" after it is a directory. Things with a "\*" after them are p
 To find out what they are, we can type:
 
 ```bash
-$ ls --help
+$ man ls
 ```
 
-`ls --help` displays detailed documentation for commands in `git bash`. It is a powerful resource to explore `bash` commands, understand their usage and flags. Some manual files are very long. You can scroll through the file using your keyboard's down arrow or use the <kbd>Space</kbd> key to go forward one page and the <kbd>b</kbd> key to go backwards one page. When you are done reading, hit <kbd>q</kbd> to quit.
+`man ls` displays detailed documentation for commands in `Bash`. It is a powerful resource to explore `bash` commands, understand their usage and flags. Some manual files are very long. You can scroll through the file using your keyboard's down arrow or use the <kbd>Space</kbd> key to go forward one page and the <kbd>b</kbd> key to go backwards one page. When you are done reading, hit <kbd>q</kbd> to quit.
 
 ## Exercise
 
@@ -149,7 +147,7 @@ drwxr-xr-x user user 4096 Nov 15  2017 untrimmed_fastq
 The additional information given includes the name of the owner of the file, when the file was last modified, and whether the current user has permission to read and write to the file.
 
 ::: {.callout-tip}
-No one can possibly learn all of these arguments, that's what the help page is for. You can (and should) refer to the help page or other help files as needed.
+No one can possibly learn all of these arguments, that's what the `man` page is for. You can (and should) refer to the `man` page or other help files as needed.
 :::
 
 Let's go into the `untrimmed_fastq` directory and see what is in there.
@@ -176,7 +174,7 @@ Command:
 ```bash
 $ cd 
 $ cd Desktop
-$ cd unix_lesson
+$ cd shell_data
 ```
 Use the tab shorcut to return to shell_data directory. 
 
@@ -229,32 +227,6 @@ Displays the name of every program that starts with `pw`.
 We now know how to move around our file system using the command line. This gives us an advantage over interacting with the file system through a GUI as it allows us to work on a remote server, carry out the same set of operations on a large number of files quickly, and opens up many opportunities for using bioinformatic software that is only available in command line versions.
 
 In the next few episodes, we'll be expanding on these skills and seeing how using the command line shell enables us to make our workflow more efficient and reproducible.
-
-**Lesson Keypoints**
-
-- The shell gives you the ability to work more efficiently by using keyboard commands rather than a GUI.
-- Useful commands for navigating your file system include: `ls`, `pwd`, and `cd`.
-- Most commands take options (flags) which begin with a `-`.
-- Tab completion can reduce errors from mistyping and make work more efficient in the shell.---
-title: Navigating Files and Directories
-code-copy: true
----
-
-::: {.callout-note appearance="minimal"}
-
-**Objectives**
-
-- Use a single command to navigate multiple steps in your directory structure, including moving backwards (one level up).
-- Perform operations on files in directories outside your working directory.
-- Work with hidden directories and hidden files.
-- Interconvert between absolute and relative paths.
-- Employ navigational shortcuts to move around your file system.
-
-**Questions to be answered in this lesson**
-
-- How can I perform operations on files outside of my working directory?
-- What are some navigational shortcuts I can use to make my work more efficient?
-:::
 
 ## Moving around the file system
 
