@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Project Organization</title>
+<title>Introducing the Shell</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -207,17 +207,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#try-it-yourself-6" id="toc-try-it-yourself-6" class="nav-link" data-scroll-target="#try-it-yourself-6">Try it Yourself!</a></li>
   <li><a href="#chaining-commands-together" id="toc-chaining-commands-together" class="nav-link" data-scroll-target="#chaining-commands-together">Chaining commands together</a></li>
   </ul></li>
-  <li><a href="#command-history" id="toc-command-history" class="nav-link" data-scroll-target="#command-history">Command History</a></li>
-  <li><a href="#try-it-yourself-7" id="toc-try-it-yourself-7" class="nav-link" data-scroll-target="#try-it-yourself-7">Try it Yourself!</a></li>
-  <li><a href="#details-on-the-fastq-format" id="toc-details-on-the-fastq-format" class="nav-link" data-scroll-target="#details-on-the-fastq-format">Details on the FASTQ format</a></li>
-  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a></li>
-  <li><a href="#searching-files" id="toc-searching-files" class="nav-link" data-scroll-target="#searching-files">Searching files</a></li>
-  <li><a href="#redirecting-output-1" id="toc-redirecting-output-1" class="nav-link" data-scroll-target="#redirecting-output-1">Redirecting output</a></li>
-  <li><a href="#writing-for-loops" id="toc-writing-for-loops" class="nav-link" data-scroll-target="#writing-for-loops">Writing <code>for</code> loops</a></li>
-  <li><a href="#writing-files" id="toc-writing-files" class="nav-link" data-scroll-target="#writing-files">Writing files</a></li>
+  <li><a href="#scripts-variables-and-loops" id="toc-scripts-variables-and-loops" class="nav-link" data-scroll-target="#scripts-variables-and-loops">Scripts, variables, and loops</a></li>
   <li><a href="#writing-scripts" id="toc-writing-scripts" class="nav-link" data-scroll-target="#writing-scripts">Writing scripts</a></li>
-  <li><a href="#getting-your-project-started" id="toc-getting-your-project-started" class="nav-link" data-scroll-target="#getting-your-project-started">Getting your project started</a></li>
-  <li><a href="#organizing-your-files" id="toc-organizing-your-files" class="nav-link" data-scroll-target="#organizing-your-files">Organizing your files</a></li>
+  <li><a href="#shell-variables" id="toc-shell-variables" class="nav-link" data-scroll-target="#shell-variables">Shell variables</a></li>
+  <li><a href="#loops" id="toc-loops" class="nav-link" data-scroll-target="#loops">Loops</a>
+  <ul class="collapse">
+  <li><a href="#try-it-yourself-7" id="toc-try-it-yourself-7" class="nav-link" data-scroll-target="#try-it-yourself-7">Try it Yourself!</a></li>
+  </ul></li>
   <li><a href="#documenting-your-activity-on-the-project" id="toc-documenting-your-activity-on-the-project" class="nav-link" data-scroll-target="#documenting-your-activity-on-the-project">Documenting your activity on the project</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
@@ -228,7 +224,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Project Organization</h1>
+<h1 class="title">Introducing the Shell</h1>
 </div>
 
 
@@ -255,6 +251,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Translate an absolute path into a relative path and vice versa.</li>
 <li>Learn to use the <code>nano</code> text editor.</li>
 <li>Understand how to move, create, and delete files.</li>
+<li>Write a basic shell script.</li>
+<li>Use the <code>bash</code> command to execute a shell script.</li>
+<li>Use <code>chmod</code> to make a script an executable program.</li>
 </ul>
 <p><strong>Questions to be answered in this lesson</strong></p>
 <ul>
@@ -1019,911 +1018,187 @@ Solution
 <div class="sourceCode" id="cb96"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> grep Act5C dmel-all-r6.19.gtf <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Output:</p>
 <pre class="output"><code>46</code></pre>
-<p>Note that this is just the same as redirecting output to a file, then reading the number of lines from that file.</p>
+<p>Note that this is just the same as redirecting output to a file, then reading the number of lines from that file. ### Summary</p>
+<p>The “Wildcards and Pipes” section expands on basic UNIX commands by introducing the * wildcard for handling multiple files simultaneously, such as *.txt for all text files. It explains output redirection using &gt; to write command output to files and &gt;&gt; to append without overwriting, while detailing the three I/O streams: stdin, stdout, and stderr. The section also covers piping with the | operator, allowing the output of one command to serve as the input for another, enabling more complex operations.</p>
 </section>
 </section>
-<section id="command-history" class="level2">
-<h2 class="anchored" data-anchor-id="command-history">Command History</h2>
-<p>If you want to repeat a command that you’ve run recently, you can access previous commands using the up arrow on your keyboard to go back to the most recent command. Likewise, the down arrow takes you forward in the command history.</p>
-<p>A few more useful shortcuts:</p>
+<section id="scripts-variables-and-loops" class="level2">
+<h2 class="anchored" data-anchor-id="scripts-variables-and-loops">Scripts, variables, and loops</h2>
+<p>We now know a lot of UNIX commands! Wouldn’t it be great if we could save certain commands so that we could run them later or not have to type them out again? As it turns out, this is straightforward to do. A “shell script” is essentially a text file containing a list of UNIX commands to be executed in a sequential manner. These shell scripts can be run whenever we want, and are a great way to automate our work.</p>
+</section>
+<section id="writing-scripts" class="level2">
+<h2 class="anchored" data-anchor-id="writing-scripts">Writing scripts</h2>
+<p>So how do we write a shell script, exactly? It turns out we can do this with a text editor. Start editing a file called “demo.sh” (to recap, we can do this with <code>nano demo.sh</code>). The “.sh” is the standard file extension for shell scripts that most people use (you may also see “.bash” used).</p>
+<p>Our shell script will have two parts:</p>
 <ul>
-<li><kbd>Ctrl</kbd>+<kbd>C</kbd> will cancel the command you are writing, and give you a fresh prompt.</li>
-<li><kbd>Ctrl</kbd>+<kbd>R</kbd> will do a reverse-search through your command history. This is very useful.</li>
-<li><kbd>Ctrl</kbd>+<kbd>L</kbd> or the <code>clear</code> command will clear your screen.</li>
+<li>On the very first line, add <code>#!/bin/bash</code>. The <code>#!</code> (pronounced “hash-bang” or “shebang”) tells our computer what program to run our script with. In this case, we are telling it to run our script with our command-line shell (what we’ve been doing everything in so far). If we wanted our script to be run with something else, like Perl, we could add <code>#!/usr/bin/perl</code></li>
+<li>Now, anywhere below the first line, add <code>echo "Our script worked!"</code>. When our script runs, <code>echo</code> will happily print out <code>Our script worked!</code>.</li>
 </ul>
-<p>You can also review your recent commands with the <code>history</code> command, by entering:</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> history</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>to see a numbered list of recent commands. You can reuse one of these commands directly by referring to the number of that command.</p>
-<p>For example, if your history looked like this:</p>
-<pre class="output"><code>259  ls *
-260  ls /usr/bin/*.sh
-261  ls *R1*fastq</code></pre>
-<p>then you could repeat command #260 by entering:</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> !260</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Type <code>!</code> (exclamation point) and then the number of the command from your history. You will be glad you learned this when you need to re-run very complicated commands. For more information on advanced usage of <code>history</code>, read section 9.3 of <a href="https://www.gnu.org/software/bash/manual/html_node/index.html">Bash manual</a>.</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Our script worked!"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ready to run our program? Let’s try running it:</p>
+<p>Command:</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> demo.sh </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Error:</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bash:</span> demo.sh: command not found...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Strangely enough, Bash can’t find our script. As it turns out, Bash will only look in certain directories for scripts to run. To run anything else, we need to tell Bash exactly where to look. To run a script that we wrote ourselves, we need to specify the full path to the file, followed by the filename. We could do this one of two ways: either with our absolute path <code>~/demo.sh</code>, or with the relative path <code>./demo.sh</code>.</p>
+<p>Command:</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./demo.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Error:</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bash:</span> ./demo.sh: Permission denied</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>There’s one last thing we need to do. Before the file can be run, it needs “permission” to run. Let’s look at our file’s permissions with <code>ls -l</code> and then update:</p>
+<p>Command:</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>So how do we change permissions? As I mentioned earlier, we need permission to execute our script. Changing permissions is done with <code>chmod</code>. To add executable permissions for all users we could use this:</p>
+<p>Command:</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> chmod +x demo.sh</span>
+<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now that we have executable permissions for that file, we can run it.</p>
+<p>Command:</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./demo.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Output:</p>
+<pre><code>Our script worked!</code></pre>
+<p>Fantastic, we’ve written our first program! Before we go any further, let’s learn how to take notes inside our program using comments. A comment is indicated by the <code>#</code> character, followed by whatever we want. Comments do not get run. Let’s try out some comments in the console, then add one to our script!</p>
+<pre><code># This won't show anything.</code></pre>
+<p>Now lets try adding this to our script with <code>nano</code>. Edit your script to look something like this:</p>
+<p>Command:</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb108-3"><a href="#cb108-3" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a comment... they are nice for making notes!</span></span>
+<span id="cb108-4"><a href="#cb108-4" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Our script worked!"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When we run our script, the output should be unchanged from before!</p>
 </section>
-<section id="try-it-yourself-7" class="level2">
-<h2 class="anchored" data-anchor-id="try-it-yourself-7">Try it Yourself!</h2>
-<p>Find the line number in your history for the command that listed all the .sh files in <code>/usr/bin</code>. Rerun that command.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
+<section id="shell-variables" class="level2">
+<h2 class="anchored" data-anchor-id="shell-variables">Shell variables</h2>
+<p>Another important concept that we’ll need to cover are shell variables. Variables are a great way of saving information under a name you can access later. In programming languages like Python and R, variables can store pretty much anything you can think of. In the shell, they usually just store text. The best way to understand how they work is to see them in action.</p>
+<p>To set a variable, simply type in a name containing only letters, numbers, and underscores, followed by an <code>=</code> and whatever you want to put in the variable. Shell variable names are often uppercase by convention (but do not have to be).</p>
+<p>Command:</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> VAR=<span class="st">"This is our variable"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To use a variable, prefix its name with a <code>$</code> sign. Note that if we want to simply check what a variable is, we should use echo (or else the shell will try to run the contents of a variable).</p>
+<p>Command:</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo <span class="va">$VAR</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Output:</p>
+<pre><code>This is our variable</code></pre>
+<p>Let’s try setting a variable in our script and then recalling its value as part of a command. We’re going to make it so our script runs <code>wc -l</code> on whichever file we specify with <code>FILE</code>.</p>
+<p>Command:</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nano</span> demo.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Our script:</p>
+<pre><code>#!/bin/bash
+
+# set our variable to the name of our GTF file
+FILE=dmel-all-r6.19.gtf
+
+# call wc -l on our file
+wc -l $FILE</code></pre>
+<p>Command:</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./demo.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Output:</p>
+<pre><code>542048 dmel-all-r6.19.gtf</code></pre>
+</section>
+<section id="loops" class="level2">
+<h2 class="anchored" data-anchor-id="loops">Loops</h2>
+<p>To end our lesson on scripts, we are going to learn how to write a for-loop to execute a lot of commands at once. This will let us do the same string of commands on every file in a directory (or other stuff of that nature).</p>
+<p>for-loops generally have the following syntax:</p>
+<p>Command:</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-3"><a href="#cb116-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> VAR <span class="kw">in</span> first second third</span>
+<span id="cb116-4"><a href="#cb116-4" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span></span>
+<span id="cb116-5"><a href="#cb116-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="va">$VAR</span></span>
+<span id="cb116-6"><a href="#cb116-6" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When a for-loop gets run, the loop will run once for everything following the word <code>in</code>. In each iteration, the variable <code>$VAR</code> is set to a particular value for that iteration. In this case it will be set to <code>first</code> during the first iteration, <code>second</code> on the second, and so on. During each iteration, the code between <code>do</code> and <code>done</code> is performed.</p>
+<p>Let’s run the script we just wrote (I saved mine as <code>loop.sh</code>).</p>
+<p>Command:</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> chmod +x loop.sh</span>
+<span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./loop.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Output:</p>
+<pre><code>first
+second
+third</code></pre>
+<p>What if we wanted to loop over a shell variable, such as every file in the current directory? Shell variables work perfectly in for-loops. In this example, we’ll save the result of <code>ls</code> and loop over each file:</p>
+<p>Command:</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb119-3"><a href="#cb119-3" aria-hidden="true" tabindex="-1"></a><span class="va">FILES</span><span class="op">=</span><span class="va">$(</span><span class="fu">ls</span><span class="va">)</span></span>
+<span id="cb119-4"><a href="#cb119-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> VAR <span class="kw">in</span> <span class="va">$FILES</span></span>
+<span id="cb119-5"><a href="#cb119-5" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span></span>
+<span id="cb119-6"><a href="#cb119-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">echo</span> <span class="va">$VAR</span></span>
+<span id="cb119-7"><a href="#cb119-7" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Command:</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./loop.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>There’s a shortcut to run on all files of a particular type, say all <code>.gz</code> files:</p>
+<p>Command:</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb121-3"><a href="#cb121-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> VAR <span class="kw">in</span> <span class="pp">*</span>.gz</span>
+<span id="cb121-4"><a href="#cb121-4" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span></span>
+<span id="cb121-5"><a href="#cb121-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="va">$VAR</span></span>
+<span id="cb121-6"><a href="#cb121-6" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="try-it-yourself-7" class="level3">
+<h3 class="anchored" data-anchor-id="try-it-yourself-7">Try it Yourself!</h3>
+<p>Writing our own scripts and loops is a very rewarding activity! Lets try out <code>cd</code> to our <code>fastq</code> directory from earlier and write a loop to print off the name and top 4 lines of every fastq file in that directory.</p>
+<p>Is there a way to only run the loop on fastq files ending in <code>_1.fastq</code>?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solution">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+Solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>##Solution</p>
-<p>First type <code>history</code>. Then use <code>!</code> followed by the line number to rerun that command.</p>
+<p>Create the following script in a file called <code>head_all.sh</code></p>
+<p>Command:</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb122-2"><a href="#cb122-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-3"><a href="#cb122-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> FILE <span class="kw">in</span> <span class="pp">*</span>.fastq</span>
+<span id="cb122-4"><a href="#cb122-4" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span></span>
+<span id="cb122-5"><a href="#cb122-5" aria-hidden="true" tabindex="-1"></a>   <span class="bu">echo</span> <span class="va">$FILE</span></span>
+<span id="cb122-6"><a href="#cb122-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">head</span> <span class="at">-n</span> 4 <span class="va">$FILE</span></span>
+<span id="cb122-7"><a href="#cb122-7" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The “for” line could be modified to be <code>for FILE in *_1.fastq</code> to achieve the second aim.</p>
 </div>
 </div>
 </div>
 </section>
-<section id="details-on-the-fastq-format" class="level2">
-<h2 class="anchored" data-anchor-id="details-on-the-fastq-format">Details on the FASTQ format</h2>
-<p>Although it looks complicated (and it is), it’s easy to understand the <a href="https://en.wikipedia.org/wiki/FASTQ_format">fastq</a> format with a little decoding. Some rules about the format include…</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 4%">
-<col style="width: 95%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Line</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>Always begins with ‘@’ and then information about the read</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>The actual DNA sequence</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>Always begins with a ‘+’ and sometimes the same info in line 1</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>Has a string of characters which represent the quality scores; must have same number of characters as line 2</td>
-</tr>
-</tbody>
-</table>
-<p>We can view the first complete read in one of the files in our dataset by using <code>head</code> to look at the first four lines.</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> head <span class="at">-n</span> 4 SRR098026.fastq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="output"><code>@SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
-NNNNNNNNNNNNNNNNCNNNNNNNNNNNNNNNNNN
-+SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
-!!!!!!!!!!!!!!!!#!!!!!!!!!!!!!!!!!!</code></pre>
-<p>All but one of the nucleotides in this read are unknown (<code>N</code>). This is a pretty bad read!</p>
-<p>Line 4 shows the quality for each nucleotide in the read. Quality is interpreted as the probability of an incorrect base call (e.g.&nbsp;1 in 10) or, equivalently, the base call accuracy (e.g.&nbsp;90%). To make it possible to line up each individual nucleotide with its quality score, the numerical score is converted into a code where each individual character represents the numerical quality score for an individual nucleotide. For example, in the line above, the quality score line is:</p>
-<pre class="output"><code>!!!!!!!!!!!!!!!!#!!!!!!!!!!!!!!!!!!</code></pre>
-<p>The <code>#</code> character and each of the <code>!</code> characters represent the encoded quality for an individual nucleotide. The numerical value assigned to each of these characters depends on the sequencing platform that generated the reads. The sequencing machine used to generate our data uses the standard Sanger quality PHRED score encoding, Illumina version 1.8 onwards. Each character is assigned a quality score between 0 and 42 as shown in the chart below.</p>
-<pre class="output"><code>Quality encoding: !"#$%&amp;'()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJK
-                  |         |         |         |         |
-Quality score:    0........10........20........30........40..                          </code></pre>
-<p>Each quality score represents the probability that the corresponding nucleotide call is incorrect. This quality score is logarithmically based, so a quality score of 10 reflects a base call accuracy of 90%, but a quality score of 20 reflects a base call accuracy of 99%. These probability values are the results from the base calling algorithm and dependent on how much signal was captured for the base incorporation.</p>
-<p>Looking back at our read:</p>
-<pre class="output"><code>@SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
-NNNNNNNNNNNNNNNNCNNNNNNNNNNNNNNNNNN
-+SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
-!!!!!!!!!!!!!!!!#!!!!!!!!!!!!!!!!!!</code></pre>
-<p>we can now see that the quality of each of the <code>N</code>s is 0 and the quality of the only nucleotide call (<code>C</code>) is also very poor (<code>#</code> = a quality score of 2). This is indeed a very bad read.</p>
-<div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Objectives
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>Employ the <code>grep</code> command to search for information within files.</li>
-<li>Print the results of a command to a file.</li>
-<li>Construct command pipelines with two or more stages.</li>
-<li>Use <code>for</code> loops to run the same command for several input files.</li>
-</ul>
-</div>
-</div>
-<div class="callout callout-style-simple callout-note no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-
-</div>
-</div>
-</div>
-</section>
-<section id="questions" class="level2">
-<h2 class="anchored" data-anchor-id="questions">Questions</h2>
-<ul>
-<li>How can I search within files?</li>
-<li>How can I combine existing commands to do new things?</li>
-</ul>
-<p>:::</p>
-</section>
-<section id="searching-files" class="level2">
-<h2 class="anchored" data-anchor-id="searching-files">Searching files</h2>
-<p>We discussed in a previous episode how to search within a file using <code>less</code>. We can also search within files without even opening them, using <code>grep</code>. <code>grep</code> is a command-line utility for searching plain-text files for lines matching a specific set of characters (sometimes called a string) or a particular pattern (which can be specified using something called regular expressions). We’re not going to work with regular expressions in this lesson, and are instead going to specify the strings we are searching for. Let’s give it a try!</p>
-<div class="callout callout-style-simple callout-none no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Nucleotide abbreviations
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The four nucleotides that appear in DNA are abbreviated <code>A</code>, <code>C</code>, <code>T</code> and <code>G</code>. Unknown nucleotides are represented with the letter <code>N</code>. An <code>N</code> appearing in a sequencing file represents a position where the sequencing machine was not able to confidently determine the nucleotide in that position. You can think of an <code>N</code> as being aNy nucleotide at that position in the DNA sequence.</p>
-</div>
-</div>
-<p>We’ll search for strings inside of our fastq files. Let’s first make sure we are in the correct directory:</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ~/shell_data/untrimmed_fastq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Suppose we want to see how many reads in our file have really bad segments containing 10 consecutive unknown nucleotides (Ns).</p>
-<div class="callout callout-style-simple callout-none no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Determining quality
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>In this lesson, we’re going to be manually searching for strings of <code>N</code>s within our sequence results to illustrate some principles of file searching. It can be really useful to do this type of searching to get a feel for the quality of your sequencing results, however, in your research you will most likely use a bioinformatics tool that has a built-in program for filtering out low-quality reads. You can learn more about how to use one such tool in <a href="https://datacarpentry.org/wrangling-genomics/02-quality-control">this Data Carpentry lesson</a>.</p>
-</div>
-</div>
-<p>Let’s search for the string NNNNNNNNNN in the SRR098026 file:</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> grep NNNNNNNNNN SRR098026.fastq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This command returns a lot of output to the terminal. Every single line in the SRR098026 file that contains at least 10 consecutive Ns is printed to the terminal, regardless of how long or short the file is. We may be interested not only in the actual sequence which contains this string, but in the name (or identifier) of that sequence. We discussed in a previous lesson that the identifier line immediately precedes the nucleotide sequence for each read in a FASTQ file. We may also want to inspect the quality scores associated with each of these reads. To get all of this information, we will return the line immediately before each match and the two lines immediately after each match.</p>
-<p>We can use the <code>-B</code> argument for grep to return a specific number of lines before each match. The <code>-A</code> argument returns a specific number of lines after each matching line. Here we want the line <em>before</em> and the two lines <em>after</em> each matching line, so we add <code>-B1 -A2</code> to our grep command:</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> grep <span class="at">-B1</span> <span class="at">-A2</span> NNNNNNNNNN SRR098026.fastq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>One of the sets of lines returned by this command is:</p>
-<pre class="output"><code>@SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
-CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
-+SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
-#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</code></pre>
-<p><code>grep</code> stands for <em>global regular expression print</em>. Regular expressions (or regex) are a system and syntax for sophisticated pattern matching in text (i.e in <em>strings</em>). We won’t be delving deeping into regex syntax here (for more on regex see <a href="https://librarycarpentry.org/lc-data-intro/01-regular-expressions.html">this lesson</a>), but we can make our code a little more succinct using the <code>-E</code> flag and a regex for matching a character a specified number of times.</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> grep <span class="at">-B1</span> <span class="at">-A2</span> <span class="at">-E</span> <span class="st">"N{10}"</span> SRR098026.fastq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>and we get the same output as above.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Try it Yourself!
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ol type="1">
-<li><p>Search for the sequence <code>GNATNACCACTTCC</code> in the <code>SRR098026.fastq</code> file. Have your search return all matching lines and the name (or identifier) for each sequence that contains a match.</p></li>
-<li><p>Search for the sequence <code>AAGTT</code> in both FASTQ files. Have your search return all matching lines and the name (or identifier) for each sequence that contains a match.</p></li>
-</ol>
-<div class="callout callout-style-default callout-caution no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Solution
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-16" class="callout-16-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<ol type="1">
-<li><code>grep -B1 GNATNACCACTTCC SRR098026.fastq</code></li>
-</ol>
-<pre><code>@SRR098026.245 HWUSI-EAS1599_1:2:1:2:801 length=35
-GNATNACCACTTCCAGTGCTGANNNNNNNGGGATG</code></pre>
-<ol start="2" type="1">
-<li><code>grep -B1 AAGTT *.fastq</code></li>
-</ol>
-<pre><code>SRR097977.fastq-@SRR097977.11 209DTAAXX_Lenski2_1_7:8:3:247:351 length=36
-SRR097977.fastq:GATTGCTTTAATGAAAAAGTCATATAAGTTGCCATG
---
-SRR097977.fastq-@SRR097977.67 209DTAAXX_Lenski2_1_7:8:3:544:566 length=36
-SRR097977.fastq:TTGTCCACGCTTTTCTATGTAAAGTTTATTTGCTTT
---
-SRR097977.fastq-@SRR097977.68 209DTAAXX_Lenski2_1_7:8:3:724:110 length=36
-SRR097977.fastq:TGAAGCCTGCTTTTTTATACTAAGTTTGCATTATAA
---
-SRR097977.fastq-@SRR097977.80 209DTAAXX_Lenski2_1_7:8:3:258:281 length=36
-SRR097977.fastq:GTGGCGCTGCTGCATAAGTTGGGTTATCAGGTCGTT
---
-SRR097977.fastq-@SRR097977.92 209DTAAXX_Lenski2_1_7:8:3:353:318 length=36
-SRR097977.fastq:GGCAAAATGGTCCTCCAGCCAGGCCAGAAGCAAGTT
---
-SRR097977.fastq-@SRR097977.139 209DTAAXX_Lenski2_1_7:8:3:703:655 length=36
-SRR097977.fastq:TTTATTTGTAAAGTTTTGTTGAAATAAGGGTTGTAA
---
-SRR097977.fastq-@SRR097977.238 209DTAAXX_Lenski2_1_7:8:3:592:919 length=36
-SRR097977.fastq:TTCTTACCATCCTGAAGTTTTTTCATCTTCCCTGAT
---
-SRR098026.fastq-@SRR098026.158 HWUSI-EAS1599_1:2:1:1:1505 length=35
-SRR098026.fastq:GNNNNNNNNCAAAGTTGATCNNNNNNNNNTGTGCG</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="redirecting-output-1" class="level2">
-<h2 class="anchored" data-anchor-id="redirecting-output-1">Redirecting output</h2>
-<p><code>grep</code> allowed us to identify sequences in our FASTQ files that match a particular pattern. All of these sequences were printed to our terminal screen, but in order to work with these sequences and perform other operations on them, we will need to capture that output in some way.</p>
-<p>We can do this with something called “redirection”. The idea is that we are taking what would ordinarily be printed to the terminal screen and redirecting it to another location. In our case, we want to print this information to a file so that we can look at it later and use other commands to analyze this data.</p>
-<p>The command for redirecting output to a file is <code>&gt;</code>.</p>
-<p>Let’s try out this command and copy all the records (including all four lines of each record) in our FASTQ files that contain ‘NNNNNNNNNN’ to another file called <code>bad_reads.txt</code>.</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> grep <span class="at">-B1</span> <span class="at">-A2</span> <span class="at">-E</span> <span class="st">"N{10}"</span> SRR098026.fastq <span class="op">&gt;</span> bad_reads.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-File extensions
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-18" class="callout-18-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>You might be confused about why we’re naming our output file with a <code>.txt</code> extension. After all, it will be holding FASTQ formatted data that we’re extracting from our FASTQ files. Won’t it also be a FASTQ file? The answer is, yes - it will be a FASTQ file and it would make sense to name it with a <code>.fastq</code> extension. However, using a <code>.fastq</code> extension will lead us to problems when we move to using wildcards later in this episode. We’ll point out where this becomes important. For now, it’s good that you’re thinking about file extensions!</p>
-</div>
-</div>
-</div>
-<p>The prompt should sit there a little bit, and then it should look like nothing happened. But type <code>ls</code>. You should see a new file called <code>bad_reads.txt</code>.</p>
-<p>We can check the number of lines in our new file using a command called <code>wc</code>. <code>wc</code> stands for <strong>word count</strong>. This command counts the number of words, lines, and characters in a file. The FASTQ file may change over time, so given the potential for updates, make sure your file matches your instructor’s output.</p>
-<p>As of Sept.&nbsp;2023, <code>wc</code> gives the following output:</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> wc bad_reads.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="output"><code>  537  1073 23217 bad_reads.txt</code></pre>
-<p>This will tell us the number of lines, words and characters in the file. If we want only the number of lines, we can use the <code>-l</code> flag for <code>lines</code>.</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> wc <span class="at">-l</span> bad_reads.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="output"><code>537 bad_reads.txt</code></pre>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Try it Yourself!
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>How many sequences in <code>SRR098026.fastq</code> contain at least 3 consecutive Ns?</p>
-<div class="callout callout-style-default callout-caution no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Solution
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-19" class="callout-19-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb118"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> grep NNN SRR098026.fastq <span class="op">&gt;</span> bad_reads.txt</span>
-<span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> wc <span class="at">-l</span> bad_reads.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="output"><code>249 bad_reads.txt</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<p>We might want to search multiple FASTQ files for sequences that match our search pattern. However, we need to be careful, because each time we use the <code>&gt;</code> command to redirect output to a file, the new output will replace the output that was already present in the file. This is called “overwriting”.</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> grep <span class="at">-B1</span> <span class="at">-A2</span> <span class="at">-E</span> <span class="st">"N{10}"</span> SRR098026.fastq <span class="op">&gt;</span> bad_reads.txt</span>
-<span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> wc <span class="at">-l</span> bad_reads.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="output"><code>537 bad_reads.txt</code></pre>
-<div class="sourceCode" id="cb122"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> grep <span class="at">-B1</span> <span class="at">-A2</span> <span class="at">-E</span> <span class="st">"N{10}"</span> SRR097977.fastq <span class="op">&gt;</span> bad_reads.txt</span>
-<span id="cb122-2"><a href="#cb122-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> wc <span class="at">-l</span> bad_reads.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="output"><code>0 bad_reads.txt</code></pre>
-<p>Here, the output of our second call to <code>wc</code> shows that we no longer have any lines in our <code>bad_reads.txt</code> file. This is because the second file we searched (<code>SRR097977.fastq</code>) does not contain any lines that match our search sequence. So our file was overwritten and is now empty.</p>
-<p>We can avoid overwriting our files by using the command <code>&gt;&gt;</code>. <code>&gt;&gt;</code> is known as the “append redirect” and will append new output to the end of a file, rather than overwriting it.</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> grep <span class="at">-B1</span> <span class="at">-A2</span> <span class="at">-E</span> <span class="st">"N{10}"</span> SRR098026.fastq <span class="op">&gt;</span> bad_reads.txt</span>
-<span id="cb124-2"><a href="#cb124-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> wc <span class="at">-l</span> bad_reads.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="output"><code>537 bad_reads.txt</code></pre>
-<div class="sourceCode" id="cb126"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> grep <span class="at">-B1</span> <span class="at">-A2</span> <span class="at">-E</span> <span class="st">"N{10}"</span> SRR097977.fastq <span class="op">&gt;&gt;</span> bad_reads.txt</span>
-<span id="cb126-2"><a href="#cb126-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> wc <span class="at">-l</span> bad_reads.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="output"><code>537 bad_reads.txt</code></pre>
-<p>The output of our second call to <code>wc</code> shows that we have not overwritten our original data.</p>
-<p>We can also do this with a single line of code by using a wildcard:</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> grep <span class="at">-B1</span> <span class="at">-A2</span> NNNNNNNNNN <span class="pp">*</span>.fastq <span class="op">&gt;</span> bad_reads.txt</span>
-<span id="cb128-2"><a href="#cb128-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> wc <span class="at">-l</span> bad_reads.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="output"><code>537 bad_reads.txt</code></pre>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-File extensions - part 2
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-21" class="callout-21-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>This is where we would have trouble if we were naming our output file with a <code>.fastq</code> extension. If we already had a file called <code>bad_reads.fastq</code> (from our previous <code>grep</code> practice) and then ran the command above using a <code>.fastq</code> extension instead of a <code>.txt</code> extension, <code>grep</code> would give us a warning.</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-B1</span> <span class="at">-A2</span> <span class="at">-E</span> <span class="st">"N{10}"</span> <span class="pp">*</span>.fastq <span class="op">&gt;</span> bad_reads.fastq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="output"><code>grep: input file ‘bad_reads.fastq' is also the output</code></pre>
-<p><code>grep</code> is letting you know that the output file <code>bad_reads.fastq</code> is also included in your <code>grep</code> call because it matches the <code>*.fastq</code> pattern. Be careful with this as it can lead to some unintended results.</p>
-</div>
-</div>
-</div>
-<p>Since we might have multiple different criteria we want to search for, creating a new output file each time has the potential to clutter up our workspace. We also thus far haven’t been interested in the actual contents of those files, only in the number of reads that we’ve found. We created the files to store the reads and then counted the lines in the file to see how many reads matched our criteria. There’s a way to do this, however, that doesn’t require us to create these intermediate files - the pipe command (<code>|</code>).</p>
-<p>This is probably not a key on your keyboard you use very much, so let’s all take a minute to find that key. In the UK and US keyboard layouts, and several others, the <code>|</code> character can be found using the key combination <kbd>Shift</kbd> + <kbd>\</kbd> .</p>
-<p>This may be different for other language-specific layouts.</p>
-<p>What <code>|</code> does is take the output that is scrolling by on the terminal and uses that output as input to another command.</p>
-<p>If we don’t want to create a file before counting lines of output from our <code>grep</code> search, we could directly pipe the output of the grep search to the command <code>wc -l</code>. This can be helpful for investigating your output if you are not sure you would like to save it to a file.</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> grep <span class="at">-B1</span> <span class="at">-A2</span> <span class="at">-E</span> <span class="st">"N{10}"</span> SRR098026.fastq <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="output"><code>537</code></pre>
-<p>Because we asked <code>grep</code> for all four lines of each FASTQ record, we need to divide the output by four to get the number of sequences that match our search pattern.</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo <span class="va">$((</span><span class="dv">537</span> <span class="op">/</span> <span class="dv">4</span><span class="va">))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="output"><code>134</code></pre>
-<p>or to do this programatically</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo <span class="va">$(($(</span><span class="fu">grep</span> <span class="at">-B1</span> <span class="at">-A2</span> <span class="at">-E</span> <span class="st">"N{10}"</span> <span class="pp">*</span>.fastq <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span><span class="va">)</span> <span class="op">/</span><span class="dv">4</span><span class="va">))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="output"><code>134</code></pre>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Unix has a few different ways to do basic arithmetic, one of which we demonstrate here with <code>echo</code> and <code>$((expression))</code> notation. It’s important to know that most built-in Unix utilities do not do floating point arithmetic - that is, calculations will always return an integer.</p>
-<p>If you try <code>537 / 4</code> in a calculator you’ll get <code>134.25</code>. Where does the extra line come from? In this case, there were two sequences that had no Ns and <code>grep</code> inserted some additional lines in our file to separate them out. For more information see: the full Data Carpentry <a href="https://datacarpentry.org/shell-genomics/04-redirection.html#redirecting-output">lesson</a>.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Custom <code>grep</code> control
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Use <code>grep --help</code> (or <code>man grep</code> on a Mac) to read more about other options to customize the output of <code>grep</code> including extended options, anchoring characters, and much more.</p>
-</div>
-</div>
-<p>Redirecting output is often not intuitive, and can take some time to get used to. Once you’re comfortable with redirection, however, you’ll be able to combine any number of commands to do all sorts of exciting things with your data!</p>
-<p>None of the command line programs we’ve been learning do anything all that impressive on their own, but when you start chaining them together, you can do some really powerful things very efficiently.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-File manipulation and more practices with pipes
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>To practice a bit more with the tools we’ve added to our tool kit so far and learn a few extra ones you can follow <a href="https://datacarpentry.org/shell-genomics/Extra_lesson.html">this extra lesson</a> which uses the SRA metadata file.</p>
-</div>
-</div>
-</section>
-<section id="writing-for-loops" class="level2">
-<h2 class="anchored" data-anchor-id="writing-for-loops">Writing <code>for</code> loops</h2>
-<p>Loops are key to productivity improvements through automation as they allow us to execute commands repeatedly. Similar to wildcards and tab completion, using loops also reduces the amount of typing (and typing mistakes). Loops are helpful when performing operations on groups of sequencing files, such as unzipping or trimming multiple files. We will use loops for these purposes in subsequent analyses, but will cover the basics of them for now.</p>
-<p>When the shell sees the keyword <code>for</code>, it knows to repeat a command (or group of commands) once for each item in a list. Each time the loop runs (called an iteration), an item in the list is assigned in sequence to the <strong>variable</strong>, and the commands inside the loop are executed, before moving on to the next item in the list. Inside the loop, we call for the variable’s value by putting <code>$</code> in front of it. The <code>$</code> tells the shell interpreter to treat the <strong>variable</strong> as a variable name and substitute its value in its place, rather than treat it as text or an external command. In shell programming, this is usually called “expanding” the variable.</p>
-<p>We declare a variable by saying</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> varname=value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>like</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> day=Thurs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>and to check it was assigned we can print the variable and concatenate into a larger string with <code>echo</code>. We call the variable with a <code>$</code></p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb140-1"><a href="#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo today is <span class="va">$day</span></span>
-<span id="cb140-2"><a href="#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="ex">today</span> is Thurs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Sometimes, we want to expand a variable without any whitespace to its right. Suppose we would like to expand <code>Thurs</code> to create the text <code>Thursday</code>.</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo today is <span class="va">$dayday</span>      <span class="co"># doesn't work</span></span>
-<span id="cb141-2"><a href="#cb141-2" aria-hidden="true" tabindex="-1"></a><span class="ex">today</span> is</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The interpreter is trying to expand a variable named <code>Thursday</code>, which (probably) doesn’t exist. We can avoid this problem by enclosing the variable name in braces (<code>{</code> and <code>}</code>, also called “curly brackets”). <code>bash</code> treats the <code>#</code> character as a comment character. Any text on a line after a <code>#</code> is ignored by bash when evaluating the text as code.</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb142-1"><a href="#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo today is <span class="va">${day}</span>day      <span class="co"># now it works!</span></span>
-<span id="cb142-2"><a href="#cb142-2" aria-hidden="true" tabindex="-1"></a><span class="ex">today</span> is Thursday</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Let’s write a for loop to show us the first two lines of the fastq files we downloaded earlier.</p>
-<p>The basic template of a for loop is</p>
-<div class="callout callout-style-simple callout-note no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<pre><code>for &lt;variable&gt; in &lt;group to iterate over&gt;
-  do
-    &lt;line or lines of code involving the variable&gt;
-done</code></pre>
-</div>
-</div>
-</div>
-<p>So now let’s try it</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb144-1"><a href="#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ../untrimmed_fastq/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb145"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> for filename in <span class="pp">*</span>.fastq</span>
-<span id="cb145-2"><a href="#cb145-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> do</span>
-<span id="cb145-3"><a href="#cb145-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> head <span class="ex">-n</span> 2 <span class="va">${filename}</span></span>
-<span id="cb145-4"><a href="#cb145-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> done</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You will notice the shell prompt changes from <code>$</code> to <code>&gt;</code> and back again as we were typing in our loop. The second prompt, <code>&gt;</code>, is different to remind us that we haven’t finished typing a complete command yet. A semicolon, <code>;</code>, can be used to separate two commands written on a single line.</p>
-<p>In this case, the word <code>filename</code> is designated as the variable to be used over each iteration. In our case <code>SRR097977.fastq</code> and <code>SRR098026.fastq</code> will be substituted for <code>filename</code> because they fit the pattern of ending with .fastq in the directory we’ve specified. The next line of the for loop is <code>do</code>.</p>
-<p>The next line is the code that we want to execute. We are telling the loop to print the first two lines of each variable we iterate over.</p>
-<p>Finally, the word <code>done</code> ends the loop.</p>
-<p>After executing the loop, you should see the first two lines of both fastq files printed to the terminal. Let’s create a loop that will save this information to a file.</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb146-1"><a href="#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> for filename in <span class="pp">*</span>.fastq</span>
-<span id="cb146-2"><a href="#cb146-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> do</span>
-<span id="cb146-3"><a href="#cb146-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> head <span class="ex">-n</span> 2 <span class="va">${filename}</span> <span class="op">&gt;&gt;</span> seq_info.txt</span>
-<span id="cb146-4"><a href="#cb146-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> done</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>When writing a loop, you will not be able to return to previous lines once you have pressed Enter. Remember that we can cancel the current command using</p>
-<ul>
-<li><kbd>Ctrl</kbd>+<kbd>C</kbd></li>
-</ul>
-<p>If you notice a mistake that is going to prevent your loop for executing correctly.</p>
-<p>Note that we are using <code>&gt;&gt;</code> to append the text to our <code>seq_info.txt</code> file. If we used <code>&gt;</code>, the <code>seq_info.txt</code> file would be rewritten every time the loop iterates, so it would only have text from the last variable used. Instead, <code>&gt;&gt;</code> adds to the end of the file.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Using Basename in for loops
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-27" class="callout-27-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Basename is a function in UNIX that is helpful for removing a uniform part of a name from a list of files. In this case, we will use basename to remove the <code>.fastq</code> extension from the files that we’ve been working with.</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb147-1"><a href="#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> basename SRR097977.fastq .fastq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>We see that this returns just the SRR accession, and no longer has the .fastq file extension on it.</p>
-<pre class="output"><code>SRR097977</code></pre>
-<p>If we try the same thing but use <code>.fasta</code> as the file extension instead, nothing happens. This is because basename only works when it exactly matches a string in the file.</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> basename SRR097977.fastq .fasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="output"><code>SRR097977.fastq</code></pre>
-<p>Basename is really powerful when used in a for loop. It allows to access just the file prefix, which you can use to name things. Let’s try this.</p>
-<p>Inside our for loop, we create a new name variable. We call the basename function inside the parenthesis, then give our variable name from the for loop, in this case <code>${filename}</code>, and finally state that <code>.fastq</code> should be removed from the file name. It’s important to note that we’re not changing the actual files, we’re creating a new variable called name. The line &gt; echo $name will print to the terminal the variable name each time the for loop runs. Because we are iterating over two files, we expect to see two lines of output.</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb151-1"><a href="#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> for filename in <span class="pp">*</span>.fastq</span>
-<span id="cb151-2"><a href="#cb151-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> do</span>
-<span id="cb151-3"><a href="#cb151-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> name=<span class="va">$(</span><span class="fu">basename</span> <span class="va">${filename}</span> .fastq<span class="va">)</span></span>
-<span id="cb151-4"><a href="#cb151-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> echo <span class="va">${name}</span></span>
-<span id="cb151-5"><a href="#cb151-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> done</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Try it Yourself!
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Print the file prefix of all of the <code>.txt</code> files in our current directory.</p>
-<div class="callout callout-style-default callout-caution no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Solution
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-25" class="callout-25-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb152"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb152-1"><a href="#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> for filename in <span class="pp">*</span>.txt</span>
-<span id="cb152-2"><a href="#cb152-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> do</span>
-<span id="cb152-3"><a href="#cb152-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> name=<span class="va">$(</span><span class="fu">basename</span> <span class="va">${filename}</span> .txt<span class="va">)</span></span>
-<span id="cb152-4"><a href="#cb152-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> echo <span class="va">${name}</span></span>
-<span id="cb152-5"><a href="#cb152-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> done</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<p>One way this is really useful is to move files. Let’s rename all of our <code>.txt</code> files using <code>mv</code> so that they have the years on them, which will document when we created them.</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb153-1"><a href="#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> for filename in <span class="pp">*</span>.txt</span>
-<span id="cb153-2"><a href="#cb153-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> do</span>
-<span id="cb153-3"><a href="#cb153-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> name=<span class="va">$(</span><span class="fu">basename</span> <span class="va">${filename}</span> .txt<span class="va">)</span></span>
-<span id="cb153-4"><a href="#cb153-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> mv <span class="va">${filename}</span>  <span class="va">${name}</span>_2019.txt</span>
-<span id="cb153-5"><a href="#cb153-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> done</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Try it Yourself!
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Remove <code>_2019</code> from all of the <code>.txt</code> files.</p>
-<div class="callout callout-style-default callout-caution no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Solution
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-28" class="callout-28-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb154"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb154-1"><a href="#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> for filename in <span class="pp">*</span>_2019.txt</span>
-<span id="cb154-2"><a href="#cb154-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> do</span>
-<span id="cb154-3"><a href="#cb154-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> name=<span class="va">$(</span><span class="fu">basename</span> <span class="va">${filename}</span> _2019.txt<span class="va">)</span></span>
-<span id="cb154-4"><a href="#cb154-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> mv <span class="va">${filename}</span> <span class="va">${name}</span>.txt</span>
-<span id="cb154-5"><a href="#cb154-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> done</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Key points
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li><code>grep</code> is a powerful search tool with many options for customization.</li>
-<li><code>&gt;</code>, <code>&gt;&gt;</code>, and <code>|</code> are different ways of redirecting output.</li>
-<li><code>command &gt; file</code> redirects a command’s output to a file.</li>
-<li><code>command &gt;&gt; file</code> redirects a command’s output to a file without overwriting the existing contents of the file.</li>
-<li><code>command_1 | command_2</code> redirects the output of the first command as input to the second command.</li>
-<li><code>for</code> loops are used for iteration.</li>
-<li><code>basename</code> gets rid of repetitive parts of names.</li>
-</ul>
-</div>
-</div>
-<div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Objectives
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>Use the <code>nano</code> text editor to modify text files.</li>
-<li>Write a basic shell script.</li>
-<li>Use the <code>bash</code> command to execute a shell script.</li>
-<li>Use <code>chmod</code> to make a script an executable program.</li>
-</ul>
-</div>
-</div>
-<div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Questions
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>How can we automate a commonly used set of commands?</li>
-</ul>
-</div>
-</div>
-</section>
-<section id="writing-files" class="level2">
-<h2 class="anchored" data-anchor-id="writing-files">Writing files</h2>
-<p>We’ve been able to do a lot of work with files that already exist, but what if we want to write our own files? We’re not going to type in a FASTA file, but we’ll see as we go through other tutorials, there are a lot of reasons we’ll want to write a file, or edit an existing file.</p>
-<p>To add text to files, we’re going to use a text editor called Nano. We’re going to create a file to take notes about what we’ve been doing with the data files in <code>~/shell_data/untrimmed_fastq</code>.</p>
-<p>This is good practice when working in bioinformatics. We can create a file called <code>README.txt</code> that describes the data files in the directory or documents how the files in that directory were generated. As the name suggests, it’s a file that we or others should read to understand the information in that directory.</p>
-<p>Let’s make sure our working directory is <code>/shell_data/untrimmed_fastq</code> using <code>cd</code> to get to the right spot if necessary, then run <code>nano</code> to create a file called <code>README.txt</code>:</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb155-1"><a href="#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd shell_data/untrimmed_fastq</span>
-<span id="cb155-2"><a href="#cb155-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nano README.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The text at the bottom of the screen shows the keyboard shortcuts for performing various tasks in <code>nano</code>. We will talk more about how to interpret this information soon.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-33-contents" aria-controls="callout-33" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Which Editor?
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-33" class="callout-33-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>When we say, “<code>nano</code> is a text editor,” we really do mean “text”: <code>nano</code> can only work with plain character data, not tables, images, or any other human-friendly media. We use <code>nano</code> in examples because it is one of the least complex text editors. However, because of this trait, <code>nano</code> may not be powerful enough or flexible enough for the work you need to do after this workshop. On Unix systems (such as Linux and Mac OS X), many programmers use <a href="https://www.gnu.org/software/emacs/">Emacs</a> or <a href="https://www.vim.org/">Vim</a> (both of which require more time to learn), or a graphical editor such as <a href="https://projects.gnome.org/gedit/">Gedit</a>. On Windows, you may wish to use <a href="https://notepad-plus-plus.org/">Notepad++</a>. Windows also has a built-in editor called <code>notepad</code> that can be run from the command line in the same way as <code>nano</code> for the purposes of this lesson.</p>
-<p>No matter what editor you use, you will need to know the default location where it searches for files and where files are saved. If you start an editor from the shell, it will (probably) use your current working directory as its default location. If you use your computer’s start menu, the editor may want to save files in your desktop or documents directory instead. You can change this by navigating to another directory the first time you “Save As…”</p>
-</div>
-</div>
-</div>
-<p>Let’s type in a few lines of text. Describe what the files in this directory are or what you’ve been doing with them. Once we’re happy with our text, we can press <kbd>Ctrl</kbd>-<kbd>O</kbd> (press the <kbd>Ctrl</kbd> or <kbd>Control</kbd> key and, while holding it down, press the <kbd>O</kbd> key) to write our data to disk. You’ll be asked what file we want to save this to: press <kbd>Return</kbd> to accept the suggested default of <code>README.txt</code>.</p>
-<p>Once our file is saved, we can use <kbd>Ctrl</kbd>-<kbd>X</kbd> to quit the <code>nano</code> editor and return to the shell.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Control, Ctrl, or ^ Key
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The Control key is also called the “Ctrl” key. There are various ways in which using the Control key may be described. For example, you may see an instruction to press the <kbd>Ctrl</kbd> key and, while holding it down, press the <kbd>X</kbd> key, described as any of:</p>
-<ul>
-<li><code>Control-X</code></li>
-<li><code>Control+X</code></li>
-<li><code>Ctrl-X</code></li>
-<li><code>Ctrl+X</code></li>
-<li><code>^X</code></li>
-<li><code>C-x</code></li>
-</ul>
-<p>In <code>nano</code>, along the bottom of the screen you’ll see <code>^G Get Help ^O WriteOut</code>. This means that you can use <kbd>Ctrl</kbd>+<kbd>G</kbd> to get help and <kbd>Ctrl</kbd>+<kbd>O</kbd> to save your file.</p>
-</div>
-</div>
-<p>Now you’ve written a file. You can take a look at it with <code>less</code> or <code>cat</code>, or open it up again and edit it with <code>nano</code>.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Try it Yourself!
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Open <code>README.txt</code> and add the date to the top of the file and save the file.</p>
-<div class="callout callout-style-default callout-caution no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-35-contents" aria-controls="callout-35" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Solution
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-35" class="callout-35-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Use <code>nano README.txt</code> to open the file.<br>
-Add today’s date and then use <kbd>Ctrl</kbd>+<kbd>X</kbd> followed by <code>y</code> and <kbd>Enter</kbd> to save.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="writing-scripts" class="level2">
-<h2 class="anchored" data-anchor-id="writing-scripts">Writing scripts</h2>
-<p>A really powerful thing about the command line is that you can write scripts. Scripts let you save commands to run them and also lets you put multiple commands together. Though writing scripts may require an additional time investment initially, this can save you time as you run them repeatedly. Scripts can also address the challenge of reproducibility: if you need to repeat an analysis, you retain a record of your command history within the script.</p>
-<p>One thing we will commonly want to do with sequencing results is pull out bad reads and write them to a file to see if we can figure out what’s going on with them. We’re going to look for reads with long sequences of N’s like we did before, but now we’re going to write a script, so we can run it each time we get new sequences, rather than type the code in by hand each time.</p>
-<p>We’re going to create a new file to put this command in. We’ll call it <code>bad-reads-script.sh</code>. The <code>sh</code> isn’t required, but using that extension tells us that it’s a shell script.</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb156-1"><a href="#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nano bad-reads-script.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Bad reads have a lot of N’s, so we’re going to look for <code>N{10}</code> with <code>grep</code>. We want the whole FASTQ record, so we’re also going to get the one line above the sequence and the two lines below. We also want to look in all the files that end with <code>.fastq</code>, so we’re going to use the <code>*</code> wildcard.</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb157-1"><a href="#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-B1</span> <span class="at">-A2</span> <span class="at">-E</span> <span class="st">"N{10}"</span> <span class="pp">*</span>.fastq <span class="op">&gt;</span> scripted_bad_reads.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Type your <code>grep</code> command into the file and save it as before. Be careful that you did not add the <code>$</code> at the beginning of the line.</p>
-<p>Now comes the neat part. We can run this script. Type:</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb158-1"><a href="#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> bash bad-reads-script.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>It will look like nothing happened, but now if you look at <code>scripted_bad_reads.txt</code>, you can see that there are now reads in the file.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Try it Yourself!
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>We want the script to tell us when it’s done.</p>
-<ol type="1">
-<li>Open <code>bad-reads-script.sh</code> and add the line <code>echo "Script finished!"</code> after the <code>grep</code> command and save the file.</li>
-<li>Run the updated script.</li>
-</ol>
-<div class="callout callout-style-default callout-caution no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-37-contents" aria-controls="callout-37" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Solution
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-37" class="callout-37-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<pre><code>$ bash bad-reads-script.sh
-Script finished!</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Key Points
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>Scripts are a collection of commands executed together.</li>
-</ul>
-</div>
-</div>
-<div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Objectives
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>Create a file system for a bioinformatics project.</li>
-<li>Explain what types of files should go in your <code>docs</code>, <code>data</code>, and <code>results</code> directories.</li>
-<li>Use the <code>history</code> command and a text editor like <code>nano</code> to document your work on your project.</li>
-</ul>
-</div>
-</div>
-<div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Questions
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>How can I organize my file system for a new bioinformatics project?</li>
-<li>How can I document my work?</li>
-</ul>
-</div>
-</div>
-</section>
-<section id="getting-your-project-started" class="level2">
-<h2 class="anchored" data-anchor-id="getting-your-project-started">Getting your project started</h2>
-<p>Project organization is one of the most important parts of a sequencing project, and yet is often overlooked amidst the excitement of getting a first look at new data. Of course, while it’s best to get yourself organized before you even begin your analyses, it’s never too late to start, either.</p>
-<p>You should approach your sequencing project similarly to how you do a biological experiment and this ideally begins with experimental design. We’re going to assume that you’ve already designed a beautiful sequencing experiment to address your biological question, collected appropriate samples, and that you have enough statistical power to answer the questions you’re interested in asking. These steps are all incredibly important, but beyond the scope of our course. For all of those steps (collecting specimens, extracting DNA, prepping your samples) you’ve likely kept a lab notebook that details how and why you did each step. However, the process of documentation doesn’t stop at the sequencer!</p>
-<p>Genomics projects can quickly accumulate hundreds of files across tens of folders. Every computational analysis you perform over the course of your project is going to create many files, which can especially become a problem when you’ll inevitably want to run some of those analyses again. For instance, you might have made significant headway into your project, but then have to remember the PCR conditions you used to create your sequencing library months prior.</p>
-<p>Other questions might arise along the way:</p>
-<ul>
-<li>What were your best alignment results?</li>
-<li>Which folder were they in: Analysis1, AnalysisRedone, or AnalysisRedone2?</li>
-<li>Which quality cutoff did you use?</li>
-<li>What version of a given program did you implement your analysis in?</li>
-</ul>
-<p>Good documentation is key to avoiding this issue, and luckily enough, recording your computational experiments is even easier than recording lab data. Copy/Paste will become your best friend, sensible file names will make your analysis understandable by you and your collaborators, and writing the methods section for your next paper will be easy! Remember that in any given project of yours, it’s worthwhile to consider a future version of yourself as an entirely separate collaborator. The better your documenation is, the more this ‘collaborator’ will feel indebted to you!</p>
-<p>With this in mind, let’s have a look at the best practices for documenting your genomics project. Your future self will thank you.</p>
-<p>In this exercise we will setup a file system for the project we will be working on during this workshop.</p>
-<p>We will start by creating a directory that we can use for the rest of the workshop. First navigate to your home directory. Then confirm that you are in the correct directory using the <code>pwd</code> command.</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb160-1"><a href="#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd</span>
-<span id="cb160-2"><a href="#cb160-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pwd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You should see the output:</p>
-<pre class="output"><code>/home/&lt;your username here&gt; </code></pre>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If you aren’t in your home directory, the easiest way to get there is to enter the command <code>cd</code>, which always returns you to home.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Exercise
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Use the <code>mkdir</code> command to make the following directories:</p>
-<ul>
-<li><code>my_project</code></li>
-<li><code>my_project/docs</code></li>
-<li><code>my_project/data</code></li>
-<li><code>my_project/results</code></li>
-</ul>
-<div class="callout callout-style-default callout-caution no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-43-contents" aria-controls="callout-43" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Solution
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-43" class="callout-43-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb162"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb162-1"><a href="#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir my_project</span>
-<span id="cb162-2"><a href="#cb162-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir my_project/docs</span>
-<span id="cb162-3"><a href="#cb162-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir my_project/data</span>
-<span id="cb162-4"><a href="#cb162-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir my_project/results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<p>Use <code>ls -R</code> to verify that you have created these directories. The <code>-R</code> option for <code>ls</code> stands for recursive. This option causes <code>ls</code> to return the contents of each subdirectory within the directory iteratively.</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb163-1"><a href="#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="at">-R</span> my_project</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You should see the following output:</p>
-<pre class="output"><code>my_project/:
-data  docs  results
-
-my_project/data
-my_project/docs
-my_project/results </code></pre>
-</section>
-<section id="organizing-your-files" class="level2">
-<h2 class="anchored" data-anchor-id="organizing-your-files">Organizing your files</h2>
-<p>Before beginning any analysis, it’s important to save a copy of your raw data. The raw data should never be changed. Regardless of how sure you are that you want to carry out a particular data cleaning step, there’s always the chance that you’ll change your mind later or that there will be an error in carrying out the data cleaning and you’ll need to go back a step in the process. Having a raw copy of your data that you never modify guarantees that you will always be able to start over if something goes wrong with your analysis. When starting any analysis, you can make a copy of your raw data file and do your manipulations on that file, rather than the raw version. We learned in <a href="03-working-with-files-part02#file-permissions">a previous episode</a> how to prevent overwriting our raw data files by setting restrictive file permissions.</p>
-<p>You can store any results that are generated from your analysis in the <code>results</code> folder. This guarantees that you won’t confuse results file and data files in six months or two years when you are looking back through your files in preparation for publishing your study.</p>
-<p>The <code>docs</code> folder is the place to store any written analysis of your results, notes about how your analyses were carried out, and documents related to your eventual publication.</p>
 </section>
 <section id="documenting-your-activity-on-the-project" class="level2">
 <h2 class="anchored" data-anchor-id="documenting-your-activity-on-the-project">Documenting your activity on the project</h2>
 <p>When carrying out wet-lab analyses, most scientists work from a written protocol and keep a hard copy of written notes in their lab notebook, including any things they did differently from the written protocol. This detailed record-keeping process is just as important when doing computational analyses. Luckily, it’s even easier to record the steps you’ve carried out computational than it is when working at the bench.</p>
 <p>The <code>history</code> command is a convenient way to document all the commands you have used while analyzing and manipulating your project files. Let’s document the work we have done on our project so far.</p>
 <p>View the commands that you have used so far during this session using <code>history</code>:</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb165-1"><a href="#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> history</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> history</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The history likely contains many more commands than you have used for the current project. Let’s view the last several commands that focus on just what we need for this project.</p>
 <p>View the last n lines of your history (where n = approximately the last few lines you think relevant). For our example, we will use the last 7:</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb166-1"><a href="#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> history <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> 7</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> history <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> 7</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Exercise
+Try it Yourself!
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Using your knowledge of the shell, use the append redirect <code>&gt;&gt;</code> to create a file called <code>my_project_log_XXXX_XX_XX.sh</code> (Use the four-digit year, two-digit month, and two digit day, e.g. <code>my_project_log_2023-10-05.sh</code>)</p>
+<p>Using your knowledge of the shell, use the append redirect <code>&gt;&gt;</code> to create a file called <code>my_project_log_XXXX_XX_XX.md</code> (Use the four-digit year, two-digit month, and two digit day, e.g. <code>my_project_log_2024-10-17.md</code>)</p>
 <div class="callout callout-style-default callout-caution no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-45-contents" aria-controls="callout-45" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Solution
+Caution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-45" class="callout-45-contents callout-collapse collapse">
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb167"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb167-1"><a href="#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> history <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> 7 <span class="op">&gt;&gt;</span> my_project_log_2023-10-05.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> history <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> 7 <span class="op">&gt;&gt;</span> my_project_log_2024-10-17.md</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Note we used the last 7 lines as an example, the number of lines may vary.</p>
 </div>
 </div>
@@ -1931,65 +1206,17 @@ Solution
 </div>
 </div>
 <p>You may have noticed that your history contains the <code>history</code> command itself. To remove this redundancy from our log, let’s use the <code>nano</code> text editor to fix the file:</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb168-1"><a href="#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nano my_project_log_2023-10-05.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>(Remember to replace the <code>2023-10-05</code> with the actual date.)</p>
+<p>Command:</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nano my_project_log_2024-10-17.md</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>(Remember to replace the <code>2024-10-17</code> with the actual date.)</p>
 <p>From the <code>nano</code> screen, you can use your cursor to navigate, type, and delete any redundant lines.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-47-contents" aria-controls="callout-47" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Navigating in Nano
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-47" class="callout-47-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Although <code>nano</code> is useful, it can be frustrating to edit documents, as you can’t use your mouse to navigate to the part of the document you would like to edit. Here are some useful keyboard shortcuts for moving around within a text document in <code>nano</code>. You can find more information by typing <kbd>Ctrl</kbd>+<kbd>G</kbd> within <code>nano</code>.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 10%">
-<col style="width: 89%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>key</th>
-<th>action</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><kbd>Ctrl</kbd>+<kbd>Space</kbd> OR <kbd>Ctrl</kbd>+<kbd>→</kbd></td>
-<td>to move forward one word</td>
-</tr>
-<tr class="even">
-<td><kbd>Alt</kbd>+<kbd>Space</kbd> OR <kbd>Esc</kbd>+<kbd>Space</kbd> OR <kbd>Ctrl</kbd>+<kbd>←</kbd></td>
-<td>to move back one word</td>
-</tr>
-<tr class="odd">
-<td><kbd>Ctrl</kbd>+<kbd>A</kbd></td>
-<td>to move to the beginning of the current line</td>
-</tr>
-<tr class="even">
-<td><kbd>Ctrl</kbd>+<kbd>E</kbd></td>
-<td>to move to the end of the current line</td>
-</tr>
-<tr class="odd">
-<td><kbd>Ctrl</kbd>+<kbd>W</kbd></td>
-<td>to search</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
 <p>Add a date line and comment to the line where you have created the directory. Recall that any text on a line after a <code>#</code> is ignored by bash when evaluating the text as code. For example:</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb169-1"><a href="#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2023-10-05 </span></span>
-<span id="cb169-2"><a href="#cb169-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Created sample directories for the Unix workshop</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Command:</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2024-10-17 </span></span>
+<span id="cb127-2"><a href="#cb127-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Created sample directories for the Unix workshop</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Next, remove any lines of the history that are not relevant by navigating to those lines and using your delete key. Save your file and close <code>nano</code>.</p>
 <p>Your file should look something like this:</p>
-<pre class="output"><code># 2023-10-05 
+<pre class="output"><code># 2024-10-17 
 # Created sample directories for the Unix workshop
 
 mkdir my_project
@@ -1997,36 +1224,19 @@ mkdir my_project/docs
 mkdir my_project/data
 mkdir my_project/results</code></pre>
 <p>If you keep this file up to date, you can use it to re-do your work on your project if something happens to your results files. To demonstrate how this works, first delete your <code>my_project</code> directory and all of its subdirectories. Look at your directory contents to verify the directory is gone.</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb171-1"><a href="#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> rm <span class="at">-r</span> my_project</span>
-<span id="cb171-2"><a href="#cb171-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="output"><code>shell_data  my_project_2023-10-05.sh</code></pre>
+<div class="sourceCode" id="cb129"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> rm <span class="at">-r</span> my_project</span>
+<span id="cb129-2"><a href="#cb129-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="output"><code>shell_data  my_project_2024-10-17.sh</code></pre>
 <p>Then run your workshop log file as a bash script. You should see the <code>my_project</code> directory and all of its subdirectories reappear.</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb173-1"><a href="#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> bash my_project_log_2023-10-05.sh</span>
-<span id="cb173-2"><a href="#cb173-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> bash my_project_log_2024-10-17.md</span>
+<span id="cb131-2"><a href="#cb131-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="output"><code>shell_data  my_project
-my_project_log_2023-10-05.sh</code></pre>
-<p>It’s important that we keep our workshop log file outside of our <code>my_project</code> directory if we want to use it to recreate our work. It’s also important for us to keep it up to date by regularly updating with the commands that we used to generate our results files.</p>
-<p>Congratulations! You’ve finished your introduction to using the shell for genomics projects. You now know how to navigate your file system, create, copy, move, and remove files and directories, and automate repetitive tasks using scripts and wildcards. With this solid foundation, you’re ready to move on to apply all of these new skills to carrying out more sophisticated bioinformatics analysis work. Don’t worry if everything doesn’t feel perfectly comfortable yet. Practice makes perfect! Get in the habit of applying your new skills to your real work whenever you can.</p>
+my_project_log_2024-10-17.md</code></pre>
+<p>Congratulations! You’ve finished your introduction to using the shell. You now know how to navigate your file system, create, copy, move, and remove files and directories, and automate repetitive tasks using scripts and wildcards. With this solid foundation, you’re ready to move on to apply all of these new skills to carrying out more sophisticated bioinformatics analysis work. Don’t worry if everything doesn’t feel perfectly comfortable yet. Practice makes perfect! Get in the habit of applying your new skills to your real work whenever you can.</p>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
 <p><a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424">A Quick Guide to Organizing Computational Biology Projects</a></p>
-<div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Key Points
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>Spend the time to organize your file system when you start a new project. Your future self will thank you!</li>
-<li>Always save a write-protected copy of your raw data.</li>
-</ul>
-</div>
-</div>
 
 
 </section>
