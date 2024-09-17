@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://hshsl-training.github.io/CARTI-basic-science-coding/about.html</loc>
-    <lastmod>2024-09-16T14:08:08.556Z</lastmod>
-  </url>
-  <url>
-    <loc>https://hshsl-training.github.io/CARTI-basic-science-coding/01-Shell_programming.html</loc>
-    <lastmod>2024-09-17T16:27:08.704Z</lastmod>
-  </url>
-  <url>
     <loc>https://hshsl-training.github.io/CARTI-basic-science-coding/index.html</loc>
-    <lastmod>2024-09-16T14:08:08.562Z</lastmod>
+    <lastmod>2024-09-17T18:31:21.844Z</lastmod>
   </url>
   <url>
     <loc>https://hshsl-training.github.io/CARTI-basic-science-coding/01-DataWrangling.html</loc>
-    <lastmod>2024-09-13T15:22:33.704Z</lastmod>
+    <lastmod>2024-09-17T18:31:25.934Z</lastmod>
+  </url>
+  <url>
+    <loc>https://hshsl-training.github.io/CARTI-basic-science-coding/01-Shell_programming.html</loc>
+    <lastmod>2024-09-17T18:31:28.454Z</lastmod>
   </url>
   <url>
     <loc>https://hshsl-training.github.io/CARTI-basic-science-coding/02-DataVisualization.html</loc>
-    <lastmod>2024-09-13T15:22:33.719Z</lastmod>
+    <lastmod>2024-09-17T18:31:33.947Z</lastmod>
+  </url>
+  <url>
+    <loc>https://hshsl-training.github.io/CARTI-basic-science-coding/about.html</loc>
+    <lastmod>2024-09-17T18:31:34.230Z</lastmod>
   </url>
 </urlset>
