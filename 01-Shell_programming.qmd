@@ -3,14 +3,15 @@ title: Introducing the Shell
 code-copy: true
 ---
 
-::: {.callout-note appearance="minimal"}
-
-## Objectives
+## Learning Objectives
 
 - Describe key reasons for learning shell.
-- Navigate your file system using the Git Bash command line.
+- Navigate your file system using the Bash command line.
 - Access and read help files for `bash` programs and use help files to identify useful command options.
 - Demonstrate the use of tab completion, and explain its advantages.
+- Translate an absolute path into a relative path and vice versa.
+- Learn to use the `nano` text editor.
+- Understand how to move, create, and delete files.
 
 **Questions to be answered in this lesson**
 
@@ -18,7 +19,6 @@ code-copy: true
 - How can I move around on my computers file system?
 - How can I see what files and directories I have?
 - How can I specify the location of a file or directory on my computer?
-:::
 
 ## What is a shell?
 
@@ -29,7 +29,7 @@ There are various types of shells, each with its own flair. On macOS and Linux s
 For this workshop, we will be using *Bash* in a Ubuntu virtual machine specifically set up for this class. The commands we explore will also work in *zsh* (available in the Mac Terminal) with minimal adjustments. While *PowerShell* (the Windows shell) has a different syntax, many of the fundamental commands and concepts are similar and can be adapted with little or no modification.
 
 
-##  Why should I learn the Unix Shell?
+###  Why should I learn the Shell?
 
 There are many reasons that may benefit you from learning about about the shell:
 
@@ -41,12 +41,12 @@ There are many reasons that may benefit you from learning about about the shell:
 
 - *Save on computing capacity.* Sometimes, when we work with data some tasks may require large amounts of computing power and can't realistically be run on your own machine. These tasks are best performed using remote computers or cloud computing, which can only be accessed through a shell.
 
-- *Get advantage of the command line tools.* Many bioinformatics tools can only be used through the CLI. Many offer features and parameter options which are not available in the GUI. BLAST is an example. Many of the advanced functions are only accessible to users who know how to use a shell.
+- *Get advantage of the command line tools.* Many bioinformatics tools can only be used through the shell. Many offer features and parameter options which are not available in the GUI. BLAST is an example. Many of the advanced functions are only accessible to users who know how to use a shell.
 
 
-## The *Git Bash* Window
+### The *Shell* Window
 
-As you open your *Git Bash* Window, you may see something like the following:
+As you open your *Terminal* Window, you may see something like the following:
 
 ```bash
 ComputerUserName-####ABC MINGW64 ~
@@ -60,13 +60,11 @@ This symbol may be different if you are using a Linux or Mac computer.
 
 ## Navigating your file system
 
-The part of the operating system that manages files and directories is called the **file system**. It organizes our data into files, which hold information, and directories (also called "folders"), which hold files or other directories.
+The **file system** manages files and directories in an operating system, organizing data into files (which store information) and directories or folders (which contain files or other directories(sub-directories)).
 
-Several commands are frequently used to create, inspect, rename, and delete files and directories.
+Common commands allow you to create, inspect, rename, and delete files and directories. To determine your location, use the `pwd` ("print working directory") command.
 
-Let's find out where we are by running a command called `pwd` (which stands for "print working directory").
-
-At any moment, our **current working directory** is our current default directory, i.e., the directory that the computer assumes we want to run commands in, unless we explicitly specify something else.
+Your **current working directory** is the default location where commands are executed unless you specify a different directory.
 
 Command:
 ```bash
@@ -118,12 +116,12 @@ Anything with a "/" after it is a directory. Things with a "\*" after them are p
 To find out what they are, we can type:
 
 ```bash
-$ ls --help
+$ man ls
 ```
 
-`ls --help` displays detailed documentation for commands in `git bash`. It is a powerful resource to explore `bash` commands, understand their usage and flags. Some manual files are very long. You can scroll through the file using your keyboard's down arrow or use the <kbd>Space</kbd> key to go forward one page and the <kbd>b</kbd> key to go backwards one page. When you are done reading, hit <kbd>q</kbd> to quit.
+`man ls` displays detailed documentation for commands in `Bash`. It is a powerful resource to explore `bash` commands, understand their usage and flags. Some manual files are very long. You can scroll through the file using your keyboard's down arrow or use the <kbd>Space</kbd> key to go forward one page and the <kbd>b</kbd> key to go backwards one page. When you are done reading, hit <kbd>q</kbd> to quit.
 
-## Exercise
+### Try it Yourself!
 
 Use the `-l` option for the `ls` command to display more information for each item in the directory. 
 
@@ -131,7 +129,7 @@ What is one piece of additional information this long format gives you that you 
 
 ::: {.callout-tip collapse="true"}
 
-## Solution
+### Solution
 Command:
 ```bash
 $ ls -l
@@ -149,7 +147,7 @@ drwxr-xr-x user user 4096 Nov 15  2017 untrimmed_fastq
 The additional information given includes the name of the owner of the file, when the file was last modified, and whether the current user has permission to read and write to the file.
 
 ::: {.callout-tip}
-No one can possibly learn all of these arguments, that's what the help page is for. You can (and should) refer to the help page or other help files as needed.
+No one can possibly learn all of these arguments, that's what the `man` page is for. You can (and should) refer to the `man` page or other help files as needed.
 :::
 
 Let's go into the `untrimmed_fastq` directory and see what is in there.
@@ -166,7 +164,7 @@ SRR097977.fastq  SRR098026.fastq
 
 This directory contains two files with `.fastq` extensions. FASTQ is a format for storing information about sequencing reads and their quality. We will be learning more about FASTQ files in a later lesson.
 
-## Shortcut: Tab Completion
+### Shortcut: Tab Completion
 
 Typing out file or directory names can waste a lot of time and it's easy to make typing mistakes.Instead we can use tab complete as a shortcut. When you start typing out the name of a directory or file, then hit the <kbd>Tab</kbd> key, the shell will try to fill in the rest of the directory or file name.
 
@@ -176,7 +174,7 @@ Command:
 ```bash
 $ cd 
 $ cd Desktop
-$ cd unix_lesson
+$ cd shell_data
 ```
 Use the tab shorcut to return to shell_data directory. 
 
@@ -224,39 +222,8 @@ pwck      pwconv    pwd       pwdx      pwunconv
 
 Displays the name of every program that starts with `pw`.
 
-## Summary
 
-We now know how to move around our file system using the command line. This gives us an advantage over interacting with the file system through a GUI as it allows us to work on a remote server, carry out the same set of operations on a large number of files quickly, and opens up many opportunities for using bioinformatic software that is only available in command line versions.
-
-In the next few episodes, we'll be expanding on these skills and seeing how using the command line shell enables us to make our workflow more efficient and reproducible.
-
-**Lesson Keypoints**
-
-- The shell gives you the ability to work more efficiently by using keyboard commands rather than a GUI.
-- Useful commands for navigating your file system include: `ls`, `pwd`, and `cd`.
-- Most commands take options (flags) which begin with a `-`.
-- Tab completion can reduce errors from mistyping and make work more efficient in the shell.---
-title: Navigating Files and Directories
-code-copy: true
----
-
-::: {.callout-note appearance="minimal"}
-
-**Objectives**
-
-- Use a single command to navigate multiple steps in your directory structure, including moving backwards (one level up).
-- Perform operations on files in directories outside your working directory.
-- Work with hidden directories and hidden files.
-- Interconvert between absolute and relative paths.
-- Employ navigational shortcuts to move around your file system.
-
-**Questions to be answered in this lesson**
-
-- How can I perform operations on files outside of my working directory?
-- What are some navigational shortcuts I can use to make my work more efficient?
-:::
-
-## Moving around the file system
+### Shortcut: Moving around the file system
 
 We've learned how to use `pwd` to find our current location within our file system. We've also learned how to use `cd` to change locations and `ls` to list the contents of a directory. Now we're going to learn some additional commands for moving around within our file system.
 
@@ -264,8 +231,6 @@ Use the commands we've learned so far to navigate to the `shell_data/untrimmed_f
 
 ```bash
 $ cd
-$ cd Desktop
-$ cd unix_lesson
 $ cd shell_data
 $ cd untrimmed_fastq
 ```
@@ -312,7 +277,7 @@ Command:
 ```bash
 $ ls ../../
 ```
-## Exercise
+### Try it Yourself!
 
 **Finding hidden directories**
 
@@ -320,14 +285,14 @@ First navigate to the `shell_data` directory. There is a hidden directory within
 
 Hint: hidden files and folders in Unix start with `.`, for example `.my_hidden_directory`
 
-First use the `--help` command to look at the options for `ls`.
+First use the `man` page to look at the options for `ls`.
 
 ```bash
-$ --help ls
+$ man ls
 ```
 
 ::: {.callout-tip collapse="true"}
-## Solution
+### Solution
 
 The `-a` option is short for `all` and says that it causes `ls` to "not ignore entries starting with ." 
 This is the option we want.
@@ -367,7 +332,7 @@ $ ls -Fa
 $ ls -laF
 ``` 
 
-## Examining the contents of other directories
+### Examining the contents of other directories
 
 By default, the `ls` commands lists the contents of the working directory (i.e. the directory you are in). You can always find the directory you are in using the `pwd` command. However, you can also give `ls` the names of other directories to view Navigate to your home directory if you are not already there.
 
@@ -396,14 +361,14 @@ $ cd shell_data/untrimmed_fastq
 
 This will take you to the `untrimmed_fastq` directory without having to go through the intermediate directory.
 
-## Exercice
+### Exercice
 
 **Navigating practice**
 
 Navigate to your home directory. From there, list the contents of the `untrimmed_fastq` directory.
 
 ::: {.callout-tip collapse="true"}
-## Solution
+### Solution
 Command:
 ```bash
 $ cd
@@ -415,17 +380,53 @@ SRR097977.fastq  SRR098026.fastq
 ```
 :::
 
-## Full vs. Relative Paths
+### Summary
 
-The `cd` command takes an argument which is a directory name. Directories can be specified using either a *relative* path or a full *absolute* path. The directories on the computer are arranged into a hierarchy. 
+We now know how to move around our file system using the command line. This gives us an advantage over interacting with the file system through a GUI as it allows us to work on a remote server, carry out the same set of operations on a large number of files quickly, and opens up many opportunities for using bioinformatic software that is only available in command line versions of software.
 
-The full path tells you where a directory is in that hierarchy. 
+## Mastering Absolute vs. Relative Paths with the `cd` Command
+
+Navigating the file system efficiently is crucial for managing files and directories. The `cd` (**c**hange **d**irectory) command is a fundamental tool that allows you to move between directories using **absolute** and **relative** paths. Mastering these path types will enhance your command-line proficiency.
+
+### Understanding Path Types
+
+#### Absolute Path
+
+- **Definition**: An absolute path specifies the complete address of a directory from the root of the file system.
+- **Starts With**: A forward slash `/`.
+- **Example**: `/home/user/shell_data/untrimmed_fastq`
+
+#### Relative Path
+
+- **Definition**: A relative path specifies the location of a directory relative to your current directory.
+- **Does Not Start With**: A forward slash `/`.
+- **Example**: `untrimmed_fastq` (if you are already in `/home/user/shell_data`)
+
+### Directory Hierarchy Overview
+
+Visualizing the directory structure helps in understanding absolute and relative paths.
+
+```
+/
+├── home
+│   └── user
+│       ├── shell_data
+│       │   └── sra_metadata
+│       │   └── untrimmed_fastq
+│       └── Documents
+└── etc
+```
+
+- **Root Directory (`/`)**: The top-level directory.
+- **Subdirectories**: Branch out from the root or other directories.
+
+### Using the `cd` Command
 
 Navigate to the home directory, then enter the `pwd` command.
 
 Command:
 ```bash
-$ cd ~
+$ cd 
 $ pwd  
 ```
 Output:
@@ -434,12 +435,12 @@ Output:
 $ /usr/home/⟨username⟩
 ```
 
-This command will display the full name of your home directory. The very top of the hierarchy is a directory called `/` which is usually referred to as the *root directory* .
+Here `pwd` displays the full name of your home directory. The very top of the hierarchy is a directory called `/` which is usually referred to as the *root directory*.
 
 Now lets navigate directly to the `.hidden` folder using the full path. 
 
 ```bash
-$ cd /usr/home/⟨username⟩/Desktop/unix_lesson/shell_data/.hidden
+$ cd /usr/home/⟨username⟩/shell_data/.hidden
 ```
 
 This jumps forward multiple levels to the `.hidden` directory. Now go back to the home directory.
@@ -447,25 +448,21 @@ This jumps forward multiple levels to the `.hidden` directory. Now go back to th
 ```bash
 $ cd 
 ```
-You can also navigate to the `.hidden` directory using:
+You can also navigate to the `.hidden` directory using a relative path (relative to our working directory):
 
 ```bash
-$ cd Desktop/unix_lesson/shell_data/.hidden
+$ cd shell_data/.hidden
 ```
 
-These two commands have the same effect, they both take us to the `.hidden` directory. The first uses the absolute path, giving the full address from the home directory. The second uses a relative path, giving only the address from the working directory. A full path always starts with a `/`. A relative path does not.
+Both commands navigate to the `.hidden` directory, but one uses an absolute path from the home directory (`~/shell_data/.hidden`), while the other employs a relative path from the current working directory (`.hidden`). Absolute paths always begin with a `/` or `~`, providing the complete address regardless of your location. In contrast, relative paths are shorter and depend on your current directory, making them quicker to type when navigating nearby folders.
 
-A relative path is like getting directions from someone on the street. They tell you to "go right at the stop sign, and then turn left on Main Street". That works great if you're standing there together, but not so well if you're trying to tell someone how to get there from another country. A full path is like GPS coordinates. It tells you exactly where something is no matter where you are right now.
+Think of a relative path as receiving local directions, effective when you’re already nearby, whereas an absolute path is like GPS coordinates that work from anywhere. Depending on where you are in the directory hierarchy, you can choose the most convenient path type: use absolute paths when starting from the home directory and relative paths when working within a specific folder. As you become more familiar with your directory structure, navigating between directories using both path types will become easier and more intuitive.
 
-You can usually use either a full path or a relative path depending on what is most convenient. If we are in the home directory, it is more convenient to enter the full path. If we are in the working directory, it is more convenient to enter the relative path since it involves less typing.
-
-Over time, it will become easier for you to keep a mental note of the structure of the directories that you are using and how to quickly navigate amongst them.
-
-## Navigational Shortcuts
+### Navigational Shortcuts
 
 The root directory is the highest level directory in your file system and contains files that are important for your computer to perform its daily work. While you will be using the root (`/`) at the beginning of your absolute paths, it is important that you avoid working with data in these higher-level directories, as your commands can permanently alter files that the operating system needs to function. Dealing with the `home` directory is very common. The tilde character, `~`, is a shortcut for your home directory.
 
-Now Navigate to the `shell_data` directory:
+Now Navigate to the `shell_data` directory from `.hidden` directory:
 
 ```bash
 $ cd ..
@@ -478,188 +475,71 @@ $ ls ~
 
 This prints the contents of your home directory, without you needing to type the full path.
 
-The commands `cd`, and `cd ~` are very useful for quickly navigating back to your home directory.  
+### Summary
 
-**Lesson Keypoints**
+- **Absolute Paths** provide the full directory address from the root (or home directory using `~`), ensuring you can navigate to any directory from anywhere.
+- **Relative Paths** are based on your current location, allowing quicker navigation within nearby directories.
+- Mastering both path types with the `cd` command enhances your ability to efficiently manage and navigate the file system.
+- The commands `cd`, and `cd ~` are very useful for quickly navigating back to your home directory.  
 
-- The `/`, `~`, and `..` characters represent important navigational shortcuts.
-- Hidden files and directories start with `.` and can be viewed using `ls -a`.
-- Relative paths specify a location starting from the current location, while absolute paths specify a location from the root of the file system.
----
-title: Working with Files and Directories I
-code-copy: true
----
+By practicing these commands and understanding when to use each path type, you'll become proficient in navigating and managing directories in any operating system.
 
-::: {.callout-note appearance="minimal"}
 
-**Objectives**
+## Writing and Reading Files
 
-- Use wildcards (`*`) to perform operations on multiple files.
-- Use the `history` command to view and repeat recently used commands.
-
-**Questions to be answered in this lesson**
-
-- How can I view and search file contents?
-- How can I repeat recently used commands?
-- 
-:::
-
-## Working with Files
-
-### Our data set: FASTQ files
-
-Now that we know how to navigate around our directory structure, let's start working with our sequencing files. We did a sequencing experiment and have two results files, which are stored in our `untrimmed_fastq` directory.
-
-### Wildcards
-
-Navigate to your `untrimmed_fastq` directory:
+Now that we know how to move around and look at things, let’s learn how to read, write, and handle files! We’ll start by moving back to our home directory and creating a scratch directory:
 
 ```bash
-$ cd shell_data/untrimmed_fastq
+$ cd ~
+$ mkdir shell_test
+$ cd shell_test
 ```
 
-We are interested in looking at the FASTQ files in this directory. We can list all files with the .fastq extension using the command:
+### Creating and Editing Text Files
+
+When working in a shell, we will frequently need to create or edit text
+files. Text is one of the simplest computer file formats, defined as a simple
+sequence of text lines.
+
+What if we want to make a file? There are a few ways of doing this, the easiest
+of which is simply using a text editor. For this lesson, we are going to us
+`nano`, since it's more intuitive than many other terminal text editors.
+
+To create or edit a file, type `nano <filename>`, on the terminal, where
+`<filename>` is the name of the file. If the file does not already exist, it
+will be created. Let's make a new file now, type whatever you want in it, and
+save it.
 
 ```bash
-$ ls *.fastq
-```
-Output:
-```output
-SRR097977.fastq  SRR098026.fastq
+$ nano draft.txt
 ```
 
-The `*` character is a special type of character called a wildcard, which can be used to represent any number of any type of character. Thus, `*.fastq` matches every file that ends with `.fastq`.
+![Nano in action](figures/nano_screenshot.png)
 
-This command lists only the file that ends with `977.fastq`.
-Command:
-```bash
-$ ls *977.fastq
-```
- Output:
-```output
-SRR097977.fastq
-```
-Now lest search for files in your root directory. 
-The following command lists every file in `/usr/bin` that ends in the characters `.sh`.
-Note that the output displays **full** paths to files, since each result starts with `/`.
+Nano defines a number of *shortcut keys* (prefixed by the <kbd>Control</kbd> or
+<kbd>Ctrl</kbd> key) to perform actions such as saving the file or exiting the
+editor. Here are the shortcut keys for a few common actions:
 
-Command:
-```bash
-$ ls /usr/bin/*.sh
-```
-Output: 
-```output
-/usr/bin/findssl.sh  /usr/bin/gettext.sh
-```
+* <kbd>Ctrl</kbd>+<kbd>O</kbd> &mdash; save the file (into a current name or a
+  new name).
 
-## Exercise
+* <kbd>Ctrl</kbd>+<kbd>X</kbd> &mdash; exit the editor. If you have not saved
+  your file upon exiting, `nano` will ask you if you want to save.
 
-Do each of the following tasks from your current directory using a single `ls` command for each:
+* <kbd>Ctrl</kbd>+<kbd>K</kbd> &mdash; cut ("kill") a text line. This command
+  deletes a line and saves it on a clipboard. If repeated multiple times
+  without any interruption (key typing or cursor movement), it will cut a chunk
+  of text lines.
 
-1. List all of the files in `/usr/bin` that start with the letter 'c'.
-2. List all of the files in `/usr/bin` that contain the letter 'a'.
-3. List all of the files in `/usr/bin` that end with the letter 'o'.
+* <kbd>Ctrl</kbd>+<kbd>U</kbd> &mdash; paste the cut text line (or lines). This
+  command can be repeated to paste the same text elsewhere.
+  
 
-Bonus: List all of the files in `/usr/bin` that contain the letter 'a' or the letter 'c'.
+### Examining Files
 
-Hint: The bonus question requires a Unix wildcard that we haven't talked about yet. Try searching the internet for information about Unix wildcards to find what you need to solve the bonus problem.
+Next, let’s explore how to view the contents of files.
 
-::: {.callout-tip collapse="true"}
-## Solution
-
-1. `ls /usr/bin/c*`
-2. `ls /usr/bin/*a*`
-3. `ls /usr/bin/*o`  
-Bonus: `ls /usr/bin/*[ac]*`
-:::
-
-## Exercise
-
-`echo` is a built-in shell command that writes its arguments, like a line of text to standard output. The `echo` command can also be used with pattern matching characters, such as wildcard characters. Here we will use the `echo` command to see how the wildcard character is interpreted by the shell.
-
-Command:
-```bash
-$ echo *.fastq
-```
-Output:
-```output
-SRR097977.fastq SRR098026.fastq
-```
-
-The `*` is expanded to include any file that ends with `.fastq`. We can see that the output of `echo *.fastq` is the same as that of `ls *.fastq`.
-
-What would the output look like if the wildcard could *not* be matched? 
-Compare the outputs of `echo *.missing` and `ls *.missing`.
-
-::: {.callout-tip collapse="true"}
-##Solution
-
-Command:
-```bash
-$ echo *.missing
-```
-Output:
-```output
-*.missing
-```
-Command:
-```bash
-$ ls *.missing
-```
-Output:
-*Note: This is an example*
-```output
-ls: cannot access '*.missing': No such file or directory
-```
-::: 
-
-## Command History
-
-If you want to repeat a command that you've run recently, you can access previous commands using the up arrow on your keyboard to go back to the most recent command. Likewise, the down arrow takes you forward in the command history.
-
-A few more useful shortcuts:
-
-- <kbd>Ctrl</kbd>\+<kbd>C</kbd> will cancel the command you are writing, and give you a fresh prompt.
-- <kbd>Ctrl</kbd>\+<kbd>R</kbd> will do a reverse-search through your command history.  This is very useful.
-- <kbd>Ctrl</kbd>\+<kbd>L</kbd> or the `clear` command will clear your screen.
-
-You can also review your recent commands with the `history` command, by entering:
-
-```bash
-$ history
-```
-to see a numbered list of recent commands. You can reuse one of these commands directly by referring to the number of that command.
-
-For example, if your history looked like this:
-
-```output
-259  ls *
-260  ls /usr/bin/*.sh
-261  ls *R1*fastq
-```
-then you could repeat command #260 by entering:
-
-```bash
-$ !260
-```
-
-Type `!` (exclamation point) and then the number of the command from your history. You will be glad you learned this when you need to re-run very complicated commands. For more information on advanced usage of `history`, read section 9.3 of [Bash manual](https://www.gnu.org/software/bash/manual/html_node/index.html).
-
-## Exercise
-
-Find the line number in your history for the command that listed all the .sh files in `/usr/bin`. Rerun that command.
-
-::: {.callout-tip collapse="true"}
-##Solution
-
-First type `history`. Then use `!` followed by the line number to rerun that command.
-:::
-
-## Examining Files
-
-We now know how to switch directories, run programs, and look at the contents of directories, but how do we look at the contents of files?
-
-One way to examine a file is to print out all of the contents using the program `cat`.
+One way to examine a file is by using the cat command, which prints the entire contents of the file to the terminal.
 
 Enter the following command from within the `untrimmed_fastq` directory:
 
@@ -668,20 +548,21 @@ $ cat SRR098026.fastq
 ```
 This will print out all of the contents of the `SRR098026.fastq` to the screen.
 
-**Exercise**
+
+### Try it Yourself!
 
 1. Print out the contents of the `~/shell_data/untrimmed_fastq/SRR097977.fastq` file. What is the last line of the file?
    
 2. From your home directory, and without changing directories, use one short command to print the contents of all of the files in the `~/shell_data/untrimmed_fastq` directory.
 
 ::: {.callout-tip collapse="true"}
-## Solution
+### Solution
 
 1. The last line of the file is `C:CCC::CCCCCCCC<8?6A:C28C<608'&&&,'$`.
 2. `cat Desktop/unix_lesson/shell_data/untrimmed_fastq/*`
 :::
 
-`cat` is a terrific program, but when the file is really big, it can be annoying to use. The program, `less`, is useful for this case. `less` opens the file as read only, and lets you navigate through it. The navigation commands are identical to the `--help` program.
+While `cat` is a fantastic tool for displaying the contents of a file, it can become cumbersome when dealing with very large files. In such cases, the `less` command is more efficient and user-friendly. `less` opens the file in read-only mode and allows you to navigate through its contents interactively.
 
 Enter the following command:
 
@@ -708,20 +589,20 @@ If you hit "/" then "enter", `less` will  repeat the previous search. `less` sea
 For instance, let's search forward for the sequence `TTTTT` in our file. You can see that we go right to that sequence, what it looks like, and where it is in the file. If you continue to type `/` and hit return, you will move forward to the next instance of this sequence motif. If you instead type `?` and hit return, you will search backwards and move up the file to previous examples of this motif.
 
 
-## Exercise
+### Try it Yourself!
 
 What are the next three nucleotides (characters) after the first instance of the sequence quoted above?
 
 ::: {.callout-tip collapse="true"}
-## Solution
+### Solution
 `CAC`
 ::: 
 
-Remember, the `--help` program actually uses `less` internally and therefore uses the same commands, so you can search documentation using "/" as well!
+Remember, the `man` program actually uses `less` internally and therefore uses the same commands, so you can search documentation using "/" as well!
 
-There's another way that we can look at files, and in this case, just look at part of them. This can be particularly useful if we just want to see the beginning or end of the file, or see how it's formatted.
+### Viewing Parts of Files with head and tail
 
-The commands are `head` and `tail` and they let you look at the beginning and end of a file respectively.
+Another method to inspect files is to view only a portion of their contents, which is especially useful when you want to see the beginning or the end of a file or examine its formatting without loading the entire file. The `head` and `tail` commands facilitate this by allowing you to display the first few lines or the last few lines of a file, respectively. These commands are invaluable for quickly assessing large files, checking recent entries in log files, or verifying the structure of a document without the need to scroll through the entire content.
 
 Command:
 ```bash
@@ -777,34 +658,459 @@ Output:
 A!@B!BBB@ABAB#########!!!!!!!######
 ```
 
-**Lesson Keypoints**
+### Summary
 
-- You can view file contents using less, `cat`, `head`, `less` or `tail`.
-- The `history` command and the up arrow on your keyboard can be used to repeat recently used commands.
-- Using `echo` for The `echo`  pattern matching characters, and for printing stuff in the terminal. ---
-title: Working with Files and Directories II
-format: html
-code-copy: true
----
+In this section, you learned how to view the contents of files using several `Bash` commands. You can display the entire file with `cat`, navigate through large files interactively with `less`, view the beginning of a file using `head`, and examine the end of a file with `tail.` These tools offer flexible options for accessing and inspecting file data efficiently.
 
-::: {.callout-note appearance="minimal"}
+## Creating, moving, copying, and removing
 
-## Objectives 
+Now we can move around in the file structure, look at files, and search files. But what if we want to copy files or move
+them around or get rid of them? Most of the time, you can do these sorts of file manipulations without the command line,
+but there will be some cases (like when you're working with a remote computer) where it will be
+impossible. You'll also find that you may be working with hundreds of files and want to do similar manipulations to all
+of those files. In cases like this, it's much faster to do these operations at the command line.
 
-- View, search within, copy, move, and rename files. Create new directories
-- Make a file read only.
+### Copying Files
+
+While navigating the file structure, viewing files, and searching through them are essential tasks, there are times when you need to create, move, copy, or delete files. Although many of these file manipulations can be performed using graphical interfaces, there are scenarios—such as working on a remote computer or handling large batches of files—where the command line becomes indispensable. When dealing with hundreds of files that require similar operations, executing these tasks via the command line is significantly faster and more efficient.
+
+First, let's make a copy of one of our FASTQ files using the `cp` command.
+
+Navigate to the `shell_data/untrimmed_fastq` directory and enter:
+
+```bash
+$ cp SRR098026.fastq SRR098026-copy.fastq
+$ ls
+```
+
+```output
+SRR097977.fastq  SRR098026-copy.fastq  SRR098026.fastq
+```
+
+We now have two copies of the `SRR098026.fastq` file, one of them named `SRR098026-copy.fastq`. We'll move this file to a new directory
+called `backup` where we'll store our backup data files.
+
+### Creating Directories
+
+The `mkdir` command is used to make a directory. Enter `mkdir`
+followed by a space, then the directory name you want to create:
+
+```bash
+$ mkdir backup
+```
+
+### Moving / Renaming
+
+We can now move our backup file to this directory. We can
+move files around using the command `mv`:
+
+```bash
+$ mv SRR098026-copy.fastq backup
+$ ls backup
+```
+
+```output
+SRR098026-copy.fastq
+```
+
+The `mv` command is also how you rename files. Let's rename this file to make it clear that this is a backup:
+
+```bash
+$ cd backup
+$ mv SRR098026-copy.fastq SRR098026-backup.fastq
+$ ls
+```
+
+```output
+SRR098026-backup.fastq
+```
+
+### File Permissions
+ 
+We've now made a backup copy of our file, but just because we have two copies, it doesn't make us safe. We can still accidentally delete or overwrite both copies. To make sure we can't accidentally mess up this backup file, we're going to change the permissions on the file so that we're only allowed to read (i.e. view) the file, not write to it (i.e. make new changes).
+
+View the current permissions on a file using the `-l` (long) flag for the `ls` command:
+
+```bash
+$ ls -l
+```
+
+```output
+-rw-r--r-- 1 <username> 43332 <last modified date time> SRR098026-backup.fastq
+```
+
+The first part of the output for the `-l` flag gives you information about the file's current permissions. There are ten slots in the
+permissions list. The first character in this list is related to file type, not permissions, so we'll ignore it for now. The next three
+characters relate to the permissions that the file owner has, the next three relate to the permissions for group members, and the final
+three characters specify what other users outside of your group can do with the file. We're going to concentrate on the three positions
+that deal with your permissions (as the file owner).
+
+![permissions_figure](figures/rwx_figure.svg){alt='Permissions breakdown'}
+
+Here the three positions that relate to the file owner are `rw-`. The `r` means that you have permission to read the file, the `w`
+indicates that you have permission to write to (i.e. make changes to) the file, and the third position is a `-`, indicating that you
+don't have permission to carry out the ability encoded by that space (this is the space where `x` or executable ability is stored. This controls your ability to run files that are programs or `cd` into a directory).
+
+Our goal for now is to change permissions on this file so that you no longer have `w` or write permissions. We can do this using the `chmod` (change mode) command and subtracting (`-`) the write permission `-w`.
+
+```bash
+$ chmod -w SRR098026-backup.fastq
+$ ls -l 
+```
+
+```output
+-r--r--r-- 1 <username> 43332 <last modified date time> SRR098026-backup.fastq
+```
+
+### Removing
+
+To prove to ourselves that you no longer have the ability to modify this file, try deleting it with the `rm` command:
+
+```bash
+$ rm SRR098026-backup.fastq
+```
+
+You'll be asked if you want to override your file permissions:
+
+```output
+rm: remove write-protected regular file ‘SRR098026-backup.fastq'? 
+```
+
+You should enter `n` for no. If you enter `n` (for no), the file will not be deleted. If you enter `y`, you will delete the file. This gives us an extra
+measure of security, as there is one more step between us and deleting our data files.
+
+**Important**: The `rm` command permanently removes the file. Be careful with this command. It doesn't
+just nicely put the files in the Trash. They're really gone.
+
+By default, `rm` will not delete directories. You can tell `rm` to
+delete a directory using the `-r` (recursive) option. Let's delete the backup directory
+we just made.
+
+Enter the following command:
+
+```bash
+$ cd ..
+$ rm -r backup
+```
+
+This will delete not only the directory, but all files within the directory. If you have write-protected files in the directory,
+you will be asked whether you want to override your permission settings.
+
+::: {.callout-tip}
+
+### Try it Yourself!
+
+Starting in the `shell_data/untrimmed_fastq/` directory, do the following:
+
+1. Make sure that you have deleted your backup directory and all files it contains.
+2. Create a backup of each of your FASTQ files using `cp`. (Note: You'll need to do this individually for each of the two FASTQ files. We haven't
+  learned yet how to do this
+  with a wildcard.)
+3. Use a wildcard to move all of your backup files to a new backup directory.
+4. Change the permissions on all of your backup files to be write-protected.
+
+:::: {.callout-caution collapse="true" icon="false"}
+
+### Solution
+
+1. `rm -r backup`
+2. `cp SRR098026.fastq SRR098026-backup.fastq` and `cp SRR097977.fastq SRR097977-backup.fastq`
+3. `mkdir backup` and `mv *-backup.fastq backup`
+4. `chmod -w backup/*-backup.fastq`  
+  It's always a good idea to check your work with `ls -l backup`. You should see something like:
+
+```output
+-r--r--r-- 1 <username> 47552 <modified date time> SRR097977-backup.fastq
+-r--r--r-- 1 <username> 43332 <username> SRR098026-backup.fastq
+```
+
+::::
 
 :::
 
-::: {.callout-note appearance="minimal"}
+### Summary
 
-## Questions
+In this section, you learned essential commands for managing your file system efficiently. The `cp`, `mv`, and `mkdir` commands allow you to copy and move existing files as well as create new directories, enabling effective organization and manipulation of your files. Additionally, you can view file permissions using `ls -l`, which provides detailed information about each file’s access rights, and modify these permissions with `chmod` to control who can read, write, or execute your files.
 
-- How can I view and search file contents?
-- How can I create, copy and delete files and directories?
-- How can I control who has permission to modify a file?
+## Downloading and Extracting Files
+
+When you're working in the shell, especially on remote computers, its not possible to access a web browser to download files from the internet. Fortunately there are commands we can use to do just this! Also since bioinformatics files tend to be huge we typically have to compress them so they travel faster over the internet. This means we also need tools to extract the compressed files. Lets check out these tools. 
+
+Let's grab and unpack a set of demo files for use later. To do this, we'll use
+[`wget`](https://www.gnu.org/software/wget/) (`wget link` downloads a file from a link).
+
+```bash
+$ cd
+$ cd shell_data
+$ wget http://www.hpc-carpentry.org/hpc-shell/files/bash-lesson.tar.gz
+$ ls
+```
+You'll commonly encounter `.tar.gz` archives while working in UNIX. To extract the files from a `.tar.gz` file, we run the command `tar -xvf filename.tar.gz`:
+
+```bash
+$ tar -xvf bash-lesson.tar.gz
+```
+
+```output
+dmel-all-r6.19.gtf
+dmel_unique_protein_isoforms_fb_2016_01.tsv
+gene_association.fb
+SRR307023_1.fastq
+SRR307023_2.fastq
+SRR307024_1.fastq
+SRR307024_2.fastq
+SRR307025_1.fastq
+SRR307025_2.fastq
+SRR307026_1.fastq
+SRR307026_2.fastq
+SRR307027_1.fastq
+SRR307027_2.fastq
+SRR307028_1.fastq
+SRR307028_2.fastq
+SRR307029_1.fastq
+SRR307029_2.fastq
+SRR307030_1.fastq
+SRR307030_2.fastq
+```
+
+::: {.callout-tip title="Unzipping files"}
+
+ We just unzipped a .tar.gz file for this example. What if we run into other file formats that we need to unzip? Just use the handy reference below:
+ 
+* `gunzip` extracts the contents of .gz files
+* `unzip` extracts the contents of .zip files
+* `tar -xvf` extracts the contents of .tar.gz and .tar.bz2 files
 
 :::
+
+### Summary
+
+In this section we explored how to download files from the internet using the `wget` command and extract compressed .tar.gz archives with the `tar` command. By navigating to the appropriate directory, downloading the necessary demo files, and unpacking them, you can efficiently manage and access large datasets. These command-line tools are essential for handling file transfers and extractions, especially when working in environments where graphical interfaces are unavailable or when dealing with extensive data sets in UNIX-based systems.
+
+## Wildcards and Pipes
+
+Now that we know some of the basic UNIX commands, we are going to explore some more advanced features. The first of these features is the wildcard `*`. In our examples before, we've done things to files one at a time and otherwise had to specify things explicitly. The `*` character lets us speed things up and do things across multiple files.
+
+Ever wanted to move, delete, or just do "something" to all files of a certain type in a directory? `*` lets you do that, by taking the place of one or more characters in a piece of text. So `*.txt` would be equivalent to all `.txt`
+files in a directory for instance. `*` by itself means all files. Let's use our example data to see what I mean.
+
+
+### Wildcards
+
+Navigate to your `shell_data` directory:
+
+```bash
+
+$ cd shell_data
+```
+
+We are interested in looking at the FASTQ files in this directory. We can list all files with the .fastq extension using the command:
+
+```bash
+$ ls *.fastq
+```
+Output:
+```output
+SRR307023_1.fastq SRR307025_1.fastq SRR307027_1.fastq SRR307029_1.fastq
+SRR307023_2.fastq SRR307025_2.fastq SRR307027_2.fastq SRR307029_2.fastq
+SRR307024_1.fastq SRR307026_1.fastq SRR307028_1.fastq SRR307030_1.fastq
+SRR307024_2.fastq SRR307026_2.fastq SRR307028_2.fastq SRR307030_2.fastq
+```
+
+The `*` character is a special type of character called a wildcard, which can be used to represent any number of any type of character. Thus, `*.fastq` matches every file that ends with `.fastq`.
+
+
+### Try it Yourself!
+
+Now let's try cleaning up our working directory a bit. Create a folder called "fastq" and move all of our .fastq files there in one `mv` command.
+
+::: {.callout-tip collapse="true"}
+### Solution
+
+```bash
+mkdir fastq
+mv *.fastq fastq/
+```
+:::
+
+### Redirecting output
+
+Each of the commands we've used so far does only a very small amount of work.
+However, we can chain these small UNIX commands together to perform otherwise
+complicated actions!
+
+For our first foray into *piping*, or redirecting output, we are going to use
+the `>` operator to write output to a file. When using `>`, whatever is on the
+left of the `>` is written to the filename you specify on the right of the
+arrow. The actual syntax looks like `command > filename`.
+
+Let's try using `>`. `echo` simply prints back, or echoes
+whatever you type after it.
+
+Command:
+```bash
+$ echo "this is a test"
+$ echo "this is a test" > test.txt
+$ cat test.txt
+```
+
+Output:
+```output
+this is a test
+
+this is a test
+```
+
+There are 3
+input/output streams for every UNIX program you will run: `stdin`, `stdout`, and `stderr`.
+
+Let's dissect these three streams of input/output in the command we just ran:
+`echo "this is a test" > test.txt`
+
+* `stdin` is the input to a program. In the command we just ran, `stdin` is
+  represented by `"this is a test"`, which is simply every filename in our current directory.
+* `stdout` contains the actual, expected output. In this case, `>` redirected
+  `stdout` to the file `test.txt`.
+* `stderr` typically contains error messages and other information that doesn't quite fit into the category of "output". If we insist on redirecting both `stdout` and `stderr` to the same file we would use `&>` instead of `>`. (We can redirect just `stderr` using `2>`.)
+
+Now we will add another line of text to our file, but how do we do that without overwriting our original file? For this there is a different redirect `>>`. 
+
+Command:
+```bash
+$ echo "adding more text to the end of the file" >> test.txt
+$ cat test.txt
+```
+
+Output:
+```output
+this is a test
+adding more text to the end of the file
+```
+
+### Try it Yourself!
+Let me introduce you to a new command that tells us how long a file is: `wc`. `wc -l file` tells us the length of a file in lines.
+
+Command:
+```bash
+$ wc -l dmel-all-r6.19.gtf
+```
+
+Output:
+```.output
+542048 dmel-all-r6.19.gtf
+```
+
+Interesting, there are over 540000 lines in our `dmel-all-r6.19.gtf` file. 
+
+What if we wanted to run `wc -l` on every .fastq file and save that to a file fastq_length.txt? 
+
+::: {.callout-tip collapse="true" title="Solution"}
+This is where `*` comes in really handy! `*.fastq` would match every file ending in `.fastq`. and ` >` allows us to output the result to file. 
+
+Command:
+```bash
+$ cd
+$ cd shell_data
+$ wc -l fastq/*.fastq > fastq_length.txt
+```
+Notice how there was no output to the console that time. Let's check that the
+error message went to the file like we specified.
+
+```bash
+$ cat fastq_length.txt
+```
+::: 
+
+### Chaining commands together
+
+We now know how to redirect `stdout` and `stderr` to files. We can actually
+take this a step further and redirect output (`stdout`) from one command to
+serve as the input (`stdin`) for the next. To do this, we use the `|` (pipe)
+operator.
+
+`grep` is an extremely useful command. It finds things for us within files.
+Basic usage (there are a lot of options for more clever things, see the `man`
+page) uses the syntax `grep whatToFind fileToSearch`. Let's use `grep` to find
+all of the entries pertaining to the `Act5C` gene in *Drosophila melanogaster*.
+
+Command: 
+```bash
+$ grep Act5C dmel-all-r6.19.gtf
+```
+
+The output is nearly unintelligible since there is so much of it. Let's send
+the output of that `grep` command to `head` so we can just take a peek at the
+first line. The `|` operator lets us send output from one command to the next:
+
+Command: 
+```bash
+$ grep Act5C dmel-all-r6.19.gtf | head -n 1
+```
+
+Output:
+```output
+X	FlyBase	gene	5900861	5905399	.	+	.	gene_id "FBgn0000042"; gene_symbol "Act5C";
+```
+
+
+Nice work, we sent the output of `grep` to `head`. Let's try counting the
+number of entries for Act5C with `wc -l`. We can do the same trick to send
+`grep`'s output to `wc -l`:
+
+Command:
+```bash
+$ grep Act5C dmel-all-r6.19.gtf | wc -l
+```
+
+Output: 
+```output
+46
+```
+
+Note that this is just the same as redirecting output to a file, then reading the number of lines from that file.
+
+## Command History
+
+If you want to repeat a command that you've run recently, you can access previous commands using the up arrow on your keyboard to go back to the most recent command. Likewise, the down arrow takes you forward in the command history.
+
+A few more useful shortcuts:
+
+- <kbd>Ctrl</kbd>\+<kbd>C</kbd> will cancel the command you are writing, and give you a fresh prompt.
+- <kbd>Ctrl</kbd>\+<kbd>R</kbd> will do a reverse-search through your command history.  This is very useful.
+- <kbd>Ctrl</kbd>\+<kbd>L</kbd> or the `clear` command will clear your screen.
+
+You can also review your recent commands with the `history` command, by entering:
+
+```bash
+$ history
+```
+to see a numbered list of recent commands. You can reuse one of these commands directly by referring to the number of that command.
+
+For example, if your history looked like this:
+
+```output
+259  ls *
+260  ls /usr/bin/*.sh
+261  ls *R1*fastq
+```
+then you could repeat command #260 by entering:
+
+```bash
+$ !260
+```
+
+Type `!` (exclamation point) and then the number of the command from your history. You will be glad you learned this when you need to re-run very complicated commands. For more information on advanced usage of `history`, read section 9.3 of [Bash manual](https://www.gnu.org/software/bash/manual/html_node/index.html).
+
+## Try it Yourself!
+
+Find the line number in your history for the command that listed all the .sh files in `/usr/bin`. Rerun that command.
+
+::: {.callout-tip collapse="true"}
+##Solution
+
+First type `history`. Then use `!` followed by the line number to rerun that command.
+:::
+
 
 ## Details on the FASTQ format
 
@@ -877,184 +1183,6 @@ we can now see that the quality of each of the `N`s is 0 and the quality of the 
 nucleotide call (`C`) is also very poor (`#` = a quality score of 2). This is indeed a very
 bad read.
 
-## Creating, moving, copying, and removing
-
-Now we can move around in the file structure, look at files, and search files. But what if we want to copy files or move
-them around or get rid of them? Most of the time, you can do these sorts of file manipulations without the command line,
-but there will be some cases (like when you're working with a remote computer like we are for this lesson) where it will be
-impossible. You'll also find that you may be working with hundreds of files and want to do similar manipulations to all
-of those files. In cases like this, it's much faster to do these operations at the command line.
-
-### Copying Files
-
-When working with computational data, it's important to keep a safe copy of that data that can't be accidentally overwritten or deleted.
-For this lesson, our raw data is our FASTQ files.  We don't want to accidentally change the original files, so we'll make a copy of them
-and change the file permissions so that we can read from, but not write to, the files.
-
-First, let's make a copy of one of our FASTQ files using the `cp` command.
-
-Navigate to the `shell_data/untrimmed_fastq` directory and enter:
-
-```bash
-$ cp SRR098026.fastq SRR098026-copy.fastq
-$ ls
-```
-
-```output
-SRR097977.fastq  SRR098026-copy.fastq  SRR098026.fastq
-```
-
-We now have two copies of the `SRR098026.fastq` file, one of them named `SRR098026-copy.fastq`. We'll move this file to a new directory
-called `backup` where we'll store our backup data files.
-
-### Creating Directories
-
-The `mkdir` command is used to make a directory. Enter `mkdir`
-followed by a space, then the directory name you want to create:
-
-```bash
-$ mkdir backup
-```
-
-### Moving / Renaming
-
-We can now move our backup file to this directory. We can
-move files around using the command `mv`:
-
-```bash
-$ mv SRR098026-copy.fastq backup
-$ ls backup
-```
-
-```output
-SRR098026-copy.fastq
-```
-
-The `mv` command is also how you rename files. Let's rename this file to make it clear that this is a backup:
-
-```bash
-$ cd backup
-$ mv SRR098026-copy.fastq SRR098026-backup.fastq
-$ ls
-```
-
-```output
-SRR098026-backup.fastq
-```
-
-### File Permissions
-
-We've now made a backup copy of our file, but just because we have two copies, it doesn't make us safe. We can still accidentally delete or
-overwrite both copies. To make sure we can't accidentally mess up this backup file, we're going to change the permissions on the file so
-that we're only allowed to read (i.e. view) the file, not write to it (i.e. make new changes).
-
-View the current permissions on a file using the `-l` (long) flag for the `ls` command:
-
-```bash
-$ ls -l
-```
-
-```output
--rw-r--r-- 1 <username> 43332 <last modified date time> SRR098026-backup.fastq
-```
-
-The first part of the output for the `-l` flag gives you information about the file's current permissions. There are ten slots in the
-permissions list. The first character in this list is related to file type, not permissions, so we'll ignore it for now. The next three
-characters relate to the permissions that the file owner has, the next three relate to the permissions for group members, and the final
-three characters specify what other users outside of your group can do with the file. We're going to concentrate on the three positions
-that deal with your permissions (as the file owner).
-
-![](fig/rwx_figure.svg){alt='Permissions breakdown'}
-
-Here the three positions that relate to the file owner are `rw-`. The `r` means that you have permission to read the file, the `w`
-indicates that you have permission to write to (i.e. make changes to) the file, and the third position is a `-`, indicating that you
-don't have permission to carry out the ability encoded by that space (this is the space where `x` or executable ability is stored. This controls your ability to run files that are programs or `cd` into a directory).
-
-Our goal for now is to change permissions on this file so that you no longer have `w` or write permissions. We can do this using the `chmod` (change mode) command and subtracting (`-`) the write permission `-w`.
-
-```bash
-$ chmod -w SRR098026-backup.fastq
-$ ls -l 
-```
-
-```output
--r--r--r-- 1 <username> 43332 <last modified date time> SRR098026-backup.fastq
-```
-
-### Removing
-
-To prove to ourselves that you no longer have the ability to modify this file, try deleting it with the `rm` command:
-
-```bash
-$ rm SRR098026-backup.fastq
-```
-
-You'll be asked if you want to override your file permissions:
-
-```output
-rm: remove write-protected regular file ‘SRR098026-backup.fastq'? 
-```
-
-You should enter `n` for no. If you enter `n` (for no), the file will not be deleted. If you enter `y`, you will delete the file. This gives us an extra
-measure of security, as there is one more step between us and deleting our data files.
-
-**Important**: The `rm` command permanently removes the file. Be careful with this command. It doesn't
-just nicely put the files in the Trash. They're really gone.
-
-By default, `rm` will not delete directories. You can tell `rm` to
-delete a directory using the `-r` (recursive) option. Let's delete the backup directory
-we just made.
-
-Enter the following command:
-
-```bash
-$ cd ..
-$ rm -r backup
-```
-
-This will delete not only the directory, but all files within the directory. If you have write-protected files in the directory,
-you will be asked whether you want to override your permission settings.
-
-::: {.callout-tip}
-
-## Exercise
-
-Starting in the `shell_data/untrimmed_fastq/` directory, do the following:
-
-1. Make sure that you have deleted your backup directory and all files it contains.
-2. Create a backup of each of your FASTQ files using `cp`. (Note: You'll need to do this individually for each of the two FASTQ files. We haven't
-  learned yet how to do this
-  with a wildcard.)
-3. Use a wildcard to move all of your backup files to a new backup directory.
-4. Change the permissions on all of your backup files to be write-protected.
-
-:::: {.callout-caution collapse="true" icon="false"}
-
-## Solution
-
-1. `rm -r backup`
-2. `cp SRR098026.fastq SRR098026-backup.fastq` and `cp SRR097977.fastq SRR097977-backup.fastq`
-3. `mkdir backup` and `mv *-backup.fastq backup`
-4. `chmod -w backup/*-backup.fastq`  
-  It's always a good idea to check your work with `ls -l backup`. You should see something like:
-
-```output
--r--r--r-- 1 <username> 47552 <modified date time> SRR097977-backup.fastq
--r--r--r-- 1 <username> 43332 <username> SRR098026-backup.fastq
-```
-
-::::
-
-:::
-
-::: {.callout-note appearance="minimal"}
-
-## Key points
-
-- The commands `cp`, `mv`, and `mkdir` are useful for manipulating existing files and creating new directories.
-- You can view file permissions using `ls -l` and change permissions using `chmod`.
-
-:::
 
 
 ---
@@ -1075,6 +1203,7 @@ code-copy: true
 :::
 
 ::: {.callout-note appearance="minimal"}
+:::
 
 ## Questions
 
@@ -1170,7 +1299,7 @@ and we get the same output as above.
 
 ::: {.callout-tip} 
 
-## Exercise
+## Try it Yourself!
 
 1. Search for the sequence `GNATNACCACTTCC` in the `SRR098026.fastq` file.
   Have your search return all matching lines and the name (or identifier) for each sequence
@@ -1288,7 +1417,7 @@ $ wc -l bad_reads.txt
 
 ::: {.callout-tip} 
 
-## Exercise
+## Try it Yourself!
 
 How many sequences in `SRR098026.fastq` contain at least 3 consecutive Ns?
 
@@ -1616,7 +1745,7 @@ $ for filename in *.fastq
 
 :::: {.callout-note}
 
-## Exercise
+## Try it Yourself!
 
 Print the file prefix of all of the `.txt` files in our current directory.
 
@@ -1649,7 +1778,7 @@ $ for filename in *.txt
 
 ::: {.callout-note}
 
-## Exercise
+## Try it Yourself!
 
 Remove `_2019` from all of the `.txt` files.
 
@@ -1787,7 +1916,7 @@ Now you've written a file. You can take a look at it with `less` or `cat`, or op
 
 ::: {.callout-tip} 
 
-## Exercise
+## Try it Yourself!
 
 Open `README.txt` and add the date to the top of the file and save the file.
 
@@ -1832,7 +1961,7 @@ It will look like nothing happened, but now if you look at `scripted_bad_reads.t
 
 ::: {.callout-tip} 
 
-## Exercise
+## Try it Yourself!
 
 We want the script to tell us when it's done.
 
