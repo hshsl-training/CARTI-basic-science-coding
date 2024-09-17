@@ -1131,36 +1131,221 @@ Error:
 bash: ./demo.sh: Permission denied
 ```
 
-There's one last thing we need to do. Before a file can be run, it needs
-"permission" to run. Let's look at our file's permissions with `ls -l`:
+There's one last thing we need to do. Before the file can be run, it needs
+"permission" to run. Let's look at our file's permissions with `ls -l` and then update:
 
-```
+
+Command:
+```bash
 $ ls -l
 ```
-{: .language-bash}
-::: {.callout-tip} 
 
-## Try it Yourself!
+So how do we change permissions? As I mentioned earlier, we need permission to
+execute our script. Changing permissions is done with `chmod`. To add
+executable permissions for all users we could use this:
 
-We want the script to tell us when it's done.
-
-1. Open `bad-reads-script.sh` and add the line `echo "Script finished!"` after the `grep` command and save the file.
-2. Run the updated script.
-
-:::: {.callout-caution collapse="true" icon="false"}
-
-## Solution
-
+Command:
+```bash
+$ chmod +x demo.sh
+$ ls -l
 ```
-$ bash bad-reads-script.sh
-Script finished!
+Now that we have executable permissions for that file, we can run it. 
+
+Command:
+```bash
+$ ./demo.sh
 ```
 
-::::
+Output:
+```
+Our script worked!
+```
 
+
+Fantastic, we've written our first program! Before we go any further, let's
+learn how to take notes inside our program using comments. A comment is
+indicated by the `#` character, followed by whatever we want. Comments do not
+get run. Let's try out some comments in the console, then add one to our
+script!
+
+```
+# This won't show anything.
+```
+
+
+Now lets try adding this to our script with `nano`. Edit your script to look
+something like this:
+
+Command:
+```bash
+#!/bin/bash
+
+# This is a comment... they are nice for making notes!
+echo "Our script worked!"
+```
+
+
+When we run our script, the output should be unchanged from before!
+
+## Shell variables
+
+Another important concept that we'll need to cover are shell variables. Variables
+are a great way of saving information under a name you can access later. In
+programming languages like Python and R, variables can store pretty much
+anything you can think of. In the shell, they usually just store text. The best
+way to understand how they work is to see them in action.
+
+To set a variable, simply type in a name containing only letters, numbers, and
+underscores, followed by an `=` and whatever you want to put in the variable.
+Shell variable names are often uppercase by convention (but do not have to be).
+
+Command:
+```bash
+$ VAR="This is our variable"
+```
+
+
+To use a variable, prefix its name with a `$` sign. Note that if we want to
+simply check what a variable is, we should use echo (or else the shell will try
+to run the contents of a variable).
+
+Command:
+```bash
+$ echo $VAR
+```
+
+Output:
+```
+This is our variable
+```
+
+Let's try setting a variable in our script and then recalling its value as part
+of a command. We're going to make it so our script runs `wc -l` on whichever
+file we specify with `FILE`.
+
+Command:
+```bash
+nano demo.sh
+```
+Our script:
+
+```
+#!/bin/bash
+
+# set our variable to the name of our GTF file
+FILE=dmel-all-r6.19.gtf
+
+# call wc -l on our file
+wc -l $FILE
+```
+
+
+Command:
+```bash
+$ ./demo.sh
+```
+
+Output:
+```
+542048 dmel-all-r6.19.gtf
+```
+
+## Loops
+
+To end our lesson on scripts, we are going to learn how to write a for-loop to
+execute a lot of commands at once. This will let us do the same string of
+commands on every file in a directory (or other stuff of that nature).
+
+for-loops generally have the following syntax:
+
+Command:
+```bash
+#!/bin/bash
+
+for VAR in first second third
+do
+    echo $VAR
+done
+```
+
+
+When a for-loop gets run, the loop will run once for everything following the
+word `in`. In each iteration, the variable `$VAR` is set to a particular value
+for that iteration. In this case it will be set to `first` during the first
+iteration, `second` on the second, and so on. During each iteration, the code
+between `do` and `done` is performed.
+
+Let's run the script we just wrote (I saved mine as `loop.sh`).
+
+Command:
+```bash
+$ chmod +x loop.sh
+$ ./loop.sh
+```
+
+Output:
+```
+first
+second
+third
+```
+
+What if we wanted to loop over a shell variable, such as every file in the
+current directory? Shell variables work perfectly in for-loops. In this
+example, we'll save the result of `ls` and loop over each file:
+
+Command:
+```bash
+#!/bin/bash
+
+FILES=$(ls)
+for VAR in $FILES
+do
+        echo $VAR
+done
+```
+
+Command:
+```bash
+$ ./loop.sh
+```
+
+There's a shortcut to run on all files of a particular type, say all `.gz`
+files:
+
+Command:
+```bash
+#!/bin/bash
+
+for VAR in *.gz
+do
+    echo $VAR
+done
+```
+
+### Try it Yourself!
+Writing our own scripts and loops is a very rewarding activity! Lets try out `cd` to our `fastq` directory from earlier and write a loop to print off the name and top 4 lines of every fastq file in that directory.
+
+Is there a way to only run the loop on fastq files ending in `_1.fastq`?
+
+::: {.callout-tip collapse="true" title="Solution"}
+
+Create the following script in a file called `head_all.sh`
+
+Command:
+```bash
+#!/bin/bash
+
+for FILE in *.fastq
+do
+   echo $FILE
+   head -n 4 $FILE
+done
+```
+
+The "for" line could be modified to be `for FILE in *_1.fastq` to achieve
+the second aim.
 :::
-
-
 
 ## Documenting your activity on the project
 
@@ -1193,18 +1378,16 @@ $ history | tail -n 7
 
 ::: {.callout-tip} 
 
-### Exercise
+### Try it Yourself!
 
 Using your knowledge of the shell, use the append redirect `>>` to create a file called
-`my_project_log_XXXX_XX_XX.sh` (Use the four-digit year, two-digit month, and two digit day, e.g.
-`my_project_log_2023-10-05.sh`)
+`my_project_log_XXXX_XX_XX.md` (Use the four-digit year, two-digit month, and two digit day, e.g.
+`my_project_log_2024-10-17.md`)
 
 :::: {.callout-caution collapse="true" icon="false"}
 
-### Solution
-
 ```bash
-$ history | tail -n 7 >> my_project_log_2023-10-05.sh
+$ history | tail -n 7 >> my_project_log_2024-10-17.md
 ```
 
 Note we used the last 7 lines as an example, the number of lines may vary.
@@ -1216,38 +1399,22 @@ Note we used the last 7 lines as an example, the number of lines may vary.
 You may have noticed that your history contains the `history` command itself. To remove this redundancy
 from our log, let's use the `nano` text editor to fix the file:
 
+Command:
 ```bash
-$ nano my_project_log_2023-10-05.sh
+$ nano my_project_log_2024-10-17.md
 ```
 
-(Remember to replace the `2023-10-05` with the actual date.)
+(Remember to replace the `2024-10-17` with the actual date.)
 
 From the `nano` screen, you can use your cursor to navigate, type, and delete any redundant lines.
 
-::: {.callout-note collapse="true"}
-
-### Navigating in Nano
-
-Although `nano` is useful, it can be frustrating to edit documents, as you
-can't use your mouse to navigate to the part of the document you would like to edit.
-Here are some useful keyboard shortcuts for moving around within a text document in
-`nano`. You can find more information by typing <kbd>Ctrl</kbd>\+<kbd>G</kbd> within `nano`.
-
-| key   | action                                       | 
-| ----- | -------------------------------------------- |
-| <kbd>Ctrl</kbd>\+<kbd>Space</kbd> OR <kbd>Ctrl</kbd>\+<kbd>→</kbd>  | to move forward one word                     | 
-| <kbd>Alt</kbd>\+<kbd>Space</kbd> OR <kbd>Esc</kbd>\+<kbd>Space</kbd> OR <kbd>Ctrl</kbd>\+<kbd>←</kbd>   | to move back one word                        | 
-| <kbd>Ctrl</kbd>\+<kbd>A</kbd>  | to move to the beginning of the current line | 
-| <kbd>Ctrl</kbd>\+<kbd>E</kbd>  | to move to the end of the current line       | 
-| <kbd>Ctrl</kbd>\+<kbd>W</kbd>  | to search                                    | 
-
-:::
 
 Add a date line and comment to the line where you have created the directory. Recall that any
 text on a line after a `#` is ignored by bash when evaluating the text as code. For example:
 
+Command:
 ```bash
-# 2023-10-05 
+# 2024-10-17 
 # Created sample directories for the Unix workshop
 ```
 
@@ -1257,7 +1424,7 @@ delete key. Save your file and close `nano`.
 Your file should look something like this:
 
 ```output
-# 2023-10-05 
+# 2024-10-17 
 # Created sample directories for the Unix workshop
 
 mkdir my_project
@@ -1276,28 +1443,24 @@ $ ls
 ```
 
 ```output
-shell_data	my_project_2023-10-05.sh
+shell_data	my_project_2024-10-17.sh
 ```
 
 Then run your workshop log file as a bash script. You should see the `my_project`
 directory and all of its subdirectories reappear.
 
 ```bash
-$ bash my_project_log_2023-10-05.sh
+$ bash my_project_log_2024-10-17.md
 $ ls
 ```
 
 ```output
 shell_data	my_project
-my_project_log_2023-10-05.sh
+my_project_log_2024-10-17.md
 ```
 
-It's important that we keep our workshop log file outside of our `my_project` directory
-if we want to use it to recreate our work. It's also important for us to keep it up to
-date by regularly updating with the commands that we used to generate our results files.
 
-Congratulations! You've finished your introduction to using the shell for genomics
-projects. You now know how to navigate your file system, create, copy, move,
+Congratulations! You've finished your introduction to using the shell. You now know how to navigate your file system, create, copy, move,
 and remove files and directories, and automate repetitive tasks using scripts and
 wildcards. With this solid foundation, you're ready to move on to apply all of these new
 skills to carrying out more sophisticated bioinformatics
@@ -1307,12 +1470,6 @@ analysis work. Don't worry if everything doesn't feel perfectly comfortable yet.
 
 [A Quick Guide to Organizing Computational Biology Projects](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424)
 
-::: {.callout-note appearance="minimal"} 
 
-## Key Points
-- Spend the time to organize your file system when you start a new project. Your future self will thank you!
-- Always save a write-protected copy of your raw data.
-
-:::
 
 
